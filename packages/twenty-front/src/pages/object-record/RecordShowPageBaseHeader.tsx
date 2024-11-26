@@ -5,6 +5,7 @@ import { ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import { ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { ShowPageAddButton } from '@/ui/layout/show-page/components/ShowPageAddButton';
 import { ShowPageMoreButton } from '@/ui/layout/show-page/components/ShowPageMoreButton';
+import { ShowPageMoveButton } from '@/ui/layout/show-page/components/ShowPageMoveButton';
 import { useIsFeatureEnabled } from '@/workspace/hooks/useIsFeatureEnabled';
 
 type RecordShowPageBaseHeaderProps = {
@@ -13,6 +14,7 @@ type RecordShowPageBaseHeaderProps = {
   objectMetadataItem: ObjectMetadataItem;
   objectNameSingular: string;
   handleFavoriteButtonClick: () => void;
+  lines: { id: string; name: string; nameSingular: string }[];
 };
 
 export const RecordShowPageBaseHeader = ({
@@ -21,10 +23,13 @@ export const RecordShowPageBaseHeader = ({
   objectMetadataItem,
   objectNameSingular,
   handleFavoriteButtonClick,
+  lines,
 }: RecordShowPageBaseHeaderProps) => {
   const isFavoriteFolderEnabled = useIsFeatureEnabled(
     'IS_FAVORITE_FOLDER_ENABLED',
   );
+
+  const linesNameSingular = lines.map((line) => line.nameSingular);
 
   return (
     <>
@@ -49,6 +54,14 @@ export const RecordShowPageBaseHeader = ({
           targetObjectNameSingular: objectMetadataItem.nameSingular,
         }}
       />
+      {linesNameSingular.includes(objectNameSingular) && (
+        <ShowPageMoveButton
+          key="move"
+          recordId={record?.id ?? '0'}
+          objectNameSingular={objectNameSingular}
+          lines={lines}
+        />
+      )}
       <ShowPageMoreButton key="more" />
     </>
   );

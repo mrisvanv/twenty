@@ -32,7 +32,7 @@ export class GraphqlQueryDeleteManyResolverService extends GraphqlQueryBaseResol
 
     executionArgs.graphqlQueryParser.applyFilterToBuilder(
       queryBuilder,
-      objectMetadataItemWithFieldMaps.nameSingular,
+      executionArgs.repository.metadata.tableName,
       executionArgs.args.filter,
     );
 
