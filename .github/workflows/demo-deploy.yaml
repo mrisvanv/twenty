@@ -6,8 +6,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: vm-cs-crm-nonprod-eus-1
-    environment: dev
+    runs-on: crm
     steps:
     - name: 'Checkout GitHub Action'
       uses: actions/checkout@v4
