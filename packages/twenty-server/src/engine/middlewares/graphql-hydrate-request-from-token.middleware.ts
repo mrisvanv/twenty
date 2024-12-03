@@ -51,6 +51,7 @@ export class GraphQLHydrateRequestFromTokenMiddleware
       'SignUp',
       'RenewToken',
       'EmailPasswordResetLink',
+      'LocatonSync',
       'ValidatePasswordResetToken',
       'UpdatePasswordViaResetToken',
       'IntrospectionQuery',

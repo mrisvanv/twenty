@@ -471,6 +471,7 @@ export type Mutation = {
   sendInvitations: SendInvitationsOutput;
   signUp: LoginToken;
   skipSyncEmailOnboardingStep: OnboardingStepSuccess;
+  syncLocation: SyncLocation;
   track: Analytics;
   updateBillingSubscription: UpdateBillingEntity;
   updateOneObject: Object;
@@ -649,6 +650,11 @@ export type MutationSignUpArgs = {
   password: Scalars['String'];
   workspaceInviteHash?: InputMaybe<Scalars['String']>;
   workspacePersonalInviteToken?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationSyncLocationArgs = {
+  workspaceId: Scalars['String'];
 };
 
 
@@ -1080,6 +1086,12 @@ export type Support = {
   supportFrontChatId?: Maybe<Scalars['String']>;
 };
 
+export type SyncLocation = {
+  __typename?: 'SyncLocation';
+  /** Boolean that confirms query was dispatched */
+  success: Scalars['Boolean'];
+};
+
 export type TimelineCalendarEvent = {
   __typename?: 'TimelineCalendarEvent';
   conferenceLink: LinksMetadata;
@@ -1285,6 +1297,7 @@ export type Workspace = {
   __typename?: 'Workspace';
   activationStatus: WorkspaceActivationStatus;
   allowImpersonation: Scalars['Boolean'];
+  billingEntitlements?: Maybe<Array<BillingEntitlement>>;
   billingSubscriptions?: Maybe<Array<BillingSubscription>>;
   createdAt: Scalars['DateTime'];
   currentBillingSubscription?: Maybe<BillingSubscription>;
@@ -1302,6 +1315,12 @@ export type Workspace = {
   metadataVersion: Scalars['Float'];
   updatedAt: Scalars['DateTime'];
   workspaceMembersCount?: Maybe<Scalars['Float']>;
+};
+
+
+export type WorkspaceBillingEntitlementsArgs = {
+  filter?: BillingEntitlementFilter;
+  sorting?: Array<BillingEntitlementSort>;
 };
 
 
@@ -1375,6 +1394,30 @@ export type WorkspaceNameAndId = {
   displayName?: Maybe<Scalars['String']>;
   id: Scalars['String'];
 };
+
+export type BillingEntitlement = {
+  __typename?: 'billingEntitlement';
+  id: Scalars['UUID'];
+  key: Scalars['String'];
+  value: Scalars['Boolean'];
+  workspaceId: Scalars['String'];
+};
+
+export type BillingEntitlementFilter = {
+  and?: InputMaybe<Array<BillingEntitlementFilter>>;
+  id?: InputMaybe<UuidFilterComparison>;
+  or?: InputMaybe<Array<BillingEntitlementFilter>>;
+};
+
+export type BillingEntitlementSort = {
+  direction: SortDirection;
+  field: BillingEntitlementSortFields;
+  nulls?: InputMaybe<SortNulls>;
+};
+
+export enum BillingEntitlementSortFields {
+  Id = 'id'
+}
 
 export type Field = {
   __typename?: 'field';
@@ -1781,6 +1824,13 @@ export type GetClientConfigQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetClientConfigQuery = { __typename?: 'Query', clientConfig: { __typename?: 'ClientConfig', signInPrefilled: boolean, signUpDisabled: boolean, debugMode: boolean, analyticsEnabled: boolean, chromeExtensionId?: string | null, authProviders: { __typename?: 'AuthProviders', google: boolean, password: boolean, microsoft: boolean, sso: boolean }, billing: { __typename?: 'Billing', isBillingEnabled: boolean, billingUrl?: string | null, billingFreeTrialDurationInDays?: number | null }, support: { __typename?: 'Support', supportDriver: string, supportFrontChatId?: string | null }, sentry: { __typename?: 'Sentry', dsn?: string | null, environment?: string | null, release?: string | null }, captcha: { __typename?: 'Captcha', provider?: CaptchaDriverType | null, siteKey?: string | null }, api: { __typename?: 'ApiConfig', mutationMaximumAffectedRecords: number } } };
+
+export type SyncLocationMutationVariables = Exact<{
+  workspaceId: Scalars['String'];
+}>;
+
+
+export type SyncLocationMutation = { __typename?: 'Mutation', syncLocation: { __typename?: 'SyncLocation', success: boolean } };
 
 export type SkipSyncEmailOnboardingStepMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -3146,6 +3196,39 @@ export function useGetClientConfigLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type GetClientConfigQueryHookResult = ReturnType<typeof useGetClientConfigQuery>;
 export type GetClientConfigLazyQueryHookResult = ReturnType<typeof useGetClientConfigLazyQuery>;
 export type GetClientConfigQueryResult = Apollo.QueryResult<GetClientConfigQuery, GetClientConfigQueryVariables>;
+export const SyncLocationDocument = gql`
+    mutation SyncLocation($workspaceId: String!) {
+  syncLocation(workspaceId: $workspaceId) {
+    success
+  }
+}
+    `;
+export type SyncLocationMutationFn = Apollo.MutationFunction<SyncLocationMutation, SyncLocationMutationVariables>;
+
+/**
+ * __useSyncLocationMutation__
+ *
+ * To run a mutation, you first call `useSyncLocationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSyncLocationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [syncLocationMutation, { data, loading, error }] = useSyncLocationMutation({
+ *   variables: {
+ *      workspaceId: // value for 'workspaceId'
+ *   },
+ * });
+ */
+export function useSyncLocationMutation(baseOptions?: Apollo.MutationHookOptions<SyncLocationMutation, SyncLocationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SyncLocationMutation, SyncLocationMutationVariables>(SyncLocationDocument, options);
+      }
+export type SyncLocationMutationHookResult = ReturnType<typeof useSyncLocationMutation>;
+export type SyncLocationMutationResult = Apollo.MutationResult<SyncLocationMutation>;
+export type SyncLocationMutationOptions = Apollo.BaseMutationOptions<SyncLocationMutation, SyncLocationMutationVariables>;
 export const SkipSyncEmailOnboardingStepDocument = gql`
     mutation SkipSyncEmailOnboardingStep {
   skipSyncEmailOnboardingStep {
