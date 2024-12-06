@@ -8,59 +8,6 @@ import { EnvironmentService } from 'src/engine/core-modules/environment/environm
 import { Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
 import { TwentyORMManager } from 'src/engine/twenty-orm/twenty-orm.manager';
 
-//   async sendEmailPasswordResetLink(
-//     resetToken: PasswordResetToken,
-//     email: string,
-//   ): Promise<EmailPasswordResetLink> {
-//     const user = await this.userRepository.findOneBy({
-//       email,
-//     });
-
-//     if (!user) {
-//       throw new AuthException(
-//         'User not found',
-//         AuthExceptionCode.INVALID_INPUT,
-//       );
-//     }
-
-//     const frontBaseURL = this.environmentService.get('FRONT_BASE_URL');
-//     const resetLink = `${frontBaseURL}/reset-password/${resetToken.passwordResetToken}`;
-
-//     const emailData = {
-//       link: resetLink,
-//       duration: ms(
-//         differenceInMilliseconds(
-//           resetToken.passwordResetTokenExpiresAt,
-//           new Date(),
-//         ),
-//         {
-//           long: true,
-//         },
-//       ),
-//     };
-
-//     const emailTemplate = PasswordResetLinkEmail(emailData);
-//     const html = render(emailTemplate, {
-//       pretty: true,
-//     });
-
-//     const text = render(emailTemplate, {
-//       plainText: true,
-//     });
-
-//     this.emailService.send({
-//       from: `${this.environmentService.get(
-//         'EMAIL_FROM_NAME',
-//       )} <${this.environmentService.get('EMAIL_FROM_ADDRESS')}>`,
-//       to: email,
-//       subject: 'Action Needed to Reset Password',
-//       text,
-//       html,
-//     });
-
-//     return { success: true };
-//   }
-
 @Injectable()
 export class LocationService {
   constructor(
@@ -173,13 +120,13 @@ export class LocationService {
     await locationsRepository.delete(locationIds);
   }
 
-  async syncLocation(workspaceId: string) {
+  async syncLocation(workspaceId: string): Promise<boolean> {
     const workspace = await this.workspaceRepository.findOne({
       where: { id: workspaceId },
     });
 
     if (!workspace) {
-      return;
+      return false;
     }
 
     try {

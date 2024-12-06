@@ -21,7 +21,7 @@ export class LocationResolver {
     );
 
     return {
-      success: result || false,
+      success: result,
     };
   }
 }

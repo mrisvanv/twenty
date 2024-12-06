@@ -32,6 +32,7 @@ import { MessageQueueModule } from 'src/engine/core-modules/message-queue/messag
 import { messageQueueModuleFactory } from 'src/engine/core-modules/message-queue/message-queue.module-factory';
 import { TimelineMessagingModule } from 'src/engine/core-modules/messaging/timeline-messaging.module';
 import { OpenApiModule } from 'src/engine/core-modules/open-api/open-api.module';
+import { PatientModule } from 'src/engine/core-modules/patient/patient.module';
 import { PostgresCredentialsModule } from 'src/engine/core-modules/postgres-credentials/postgres-credentials.module';
 import { RedisClientModule } from 'src/engine/core-modules/redis-client/redis-client.module';
 import { RedisClientService } from 'src/engine/core-modules/redis-client/redis-client.service';
@@ -71,6 +72,7 @@ import { FileModule } from './file/file.module';
     WorkspaceEventEmitterModule,
     ActorModule,
     LocationModule,
+    PatientModule,
     TelemetryModule,
     EnvironmentModule.forRoot({}),
     RedisClientModule,
