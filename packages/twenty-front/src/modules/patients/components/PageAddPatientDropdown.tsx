@@ -27,6 +27,7 @@ export const PageAddPatientDropdown = ({
   const {
     onSearchPatient,
     onAddPatient,
+    onSelectPatient,
     isSearchPatientLoading,
     isAddPatientLoading,
     patients,
@@ -53,7 +54,7 @@ export const PageAddPatientDropdown = ({
           dropdownComponents={
             <>
               <AddPatientPicker
-                onSubmit={closeDropdown}
+                onSelect={onSelectPatient}
                 onSearchPatient={onSearchPatient}
                 isSearchPatientLoading={isSearchPatientLoading}
                 patients={patients}

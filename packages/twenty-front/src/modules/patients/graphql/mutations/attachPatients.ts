@@ -1,18 +1,17 @@
 import { gql } from '@apollo/client';
 
-export const CREATE_PATIENT = gql`
-  mutation CreatePatient(
+export const ATTACH_PATIENT = gql`
+  mutation AttachPatient(
     $leadId: String!
-    $workspaceId: String!
+    $patientId: Int!
     $categorySingularApiName: String!
   ) {
-    createPatient(
+    attachPatient(
       leadId: $leadId
-      workspaceId: $workspaceId
+      patientId: $patientId
       categorySingularApiName: $categorySingularApiName
     ) {
       success
-      patientId
       message
     }
   }

@@ -61,12 +61,12 @@ export const RecordShowPageBaseHeader = ({
       {linesNameSingular.includes(objectNameSingular) && (
         <>
           <ShowPageMoveButton
-            key="move"
+            key="move-lead"
             recordId={record?.id ?? '0'}
             objectNameSingular={objectNameSingular}
             lines={lines}
           />
-          {patientId == undefined || patientId == null ? (
+          {patientId === undefined || patientId === null || patientId === '' ? (
             <PageAddPatientDropdown
               key={ADD_PATIENT_PICKER_DROPDOWN_ID}
               dropdownId={ADD_PATIENT_PICKER_DROPDOWN_ID}

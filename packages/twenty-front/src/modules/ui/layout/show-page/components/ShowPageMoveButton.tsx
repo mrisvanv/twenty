@@ -73,6 +73,7 @@ export const ShowPageMoveButton = ({
             <DropdownMenuItemsContainer>
               {moveToLines.map((line) => (
                 <ShowPageMoveMenuButton
+                  key={line.id}
                   onClick={() => handleClick()}
                   text={line.name}
                   recordId={recordId}

@@ -68,6 +68,14 @@ export type AppTokenEdge = {
   node: AppToken;
 };
 
+export type AttachPatient = {
+  __typename?: 'AttachPatient';
+  /** Message returned from the query */
+  message?: Maybe<Scalars['String']>;
+  /** Boolean that confirms query was dispatched */
+  success: Scalars['Boolean'];
+};
+
 export type AuthProviders = {
   __typename?: 'AuthProviders';
   google: Scalars['Boolean'];
@@ -174,6 +182,8 @@ export type CreatePatient = {
   __typename?: 'CreatePatient';
   /** Message returned from the query */
   message?: Maybe<Scalars['String']>;
+  /** ID of the patient created */
+  patientId?: Maybe<Scalars['Int']>;
   /** Boolean that confirms query was dispatched */
   success: Scalars['Boolean'];
 };
@@ -444,6 +454,7 @@ export type Mutation = {
   activateWorkspace: Workspace;
   addUserToWorkspace: User;
   addUserToWorkspaceByInviteToken: User;
+  attachPatient: AttachPatient;
   authorizeApp: AuthorizeApp;
   challenge: LoginToken;
   checkoutSession: SessionEntity;
@@ -513,6 +524,13 @@ export type MutationAddUserToWorkspaceArgs = {
 
 export type MutationAddUserToWorkspaceByInviteTokenArgs = {
   inviteToken: Scalars['String'];
+};
+
+
+export type MutationAttachPatientArgs = {
+  categorySingularApiName: Scalars['String'];
+  leadId: Scalars['String'];
+  patientId: Scalars['Int'];
 };
 
 
@@ -1881,6 +1899,15 @@ export type SkipSyncEmailOnboardingStepMutationVariables = Exact<{ [key: string]
 
 export type SkipSyncEmailOnboardingStepMutation = { __typename?: 'Mutation', skipSyncEmailOnboardingStep: { __typename?: 'OnboardingStepSuccess', success: boolean } };
 
+export type AttachPatientMutationVariables = Exact<{
+  leadId: Scalars['String'];
+  patientId: Scalars['Int'];
+  categorySingularApiName: Scalars['String'];
+}>;
+
+
+export type AttachPatientMutation = { __typename?: 'Mutation', attachPatient: { __typename?: 'AttachPatient', success: boolean, message?: string | null } };
+
 export type CreatePatientMutationVariables = Exact<{
   leadId: Scalars['String'];
   workspaceId: Scalars['String'];
@@ -1888,7 +1915,7 @@ export type CreatePatientMutationVariables = Exact<{
 }>;
 
 
-export type CreatePatientMutation = { __typename?: 'Mutation', createPatient: { __typename?: 'CreatePatient', success: boolean, message?: string | null } };
+export type CreatePatientMutation = { __typename?: 'Mutation', createPatient: { __typename?: 'CreatePatient', success: boolean, patientId?: number | null, message?: string | null } };
 
 export type SearchPatientsMutationVariables = Exact<{
   searchQuery: Scalars['String'];
@@ -3322,6 +3349,46 @@ export function useSkipSyncEmailOnboardingStepMutation(baseOptions?: Apollo.Muta
 export type SkipSyncEmailOnboardingStepMutationHookResult = ReturnType<typeof useSkipSyncEmailOnboardingStepMutation>;
 export type SkipSyncEmailOnboardingStepMutationResult = Apollo.MutationResult<SkipSyncEmailOnboardingStepMutation>;
 export type SkipSyncEmailOnboardingStepMutationOptions = Apollo.BaseMutationOptions<SkipSyncEmailOnboardingStepMutation, SkipSyncEmailOnboardingStepMutationVariables>;
+export const AttachPatientDocument = gql`
+    mutation AttachPatient($leadId: String!, $patientId: Int!, $categorySingularApiName: String!) {
+  attachPatient(
+    leadId: $leadId
+    patientId: $patientId
+    categorySingularApiName: $categorySingularApiName
+  ) {
+    success
+    message
+  }
+}
+    `;
+export type AttachPatientMutationFn = Apollo.MutationFunction<AttachPatientMutation, AttachPatientMutationVariables>;
+
+/**
+ * __useAttachPatientMutation__
+ *
+ * To run a mutation, you first call `useAttachPatientMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAttachPatientMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [attachPatientMutation, { data, loading, error }] = useAttachPatientMutation({
+ *   variables: {
+ *      leadId: // value for 'leadId'
+ *      patientId: // value for 'patientId'
+ *      categorySingularApiName: // value for 'categorySingularApiName'
+ *   },
+ * });
+ */
+export function useAttachPatientMutation(baseOptions?: Apollo.MutationHookOptions<AttachPatientMutation, AttachPatientMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AttachPatientMutation, AttachPatientMutationVariables>(AttachPatientDocument, options);
+      }
+export type AttachPatientMutationHookResult = ReturnType<typeof useAttachPatientMutation>;
+export type AttachPatientMutationResult = Apollo.MutationResult<AttachPatientMutation>;
+export type AttachPatientMutationOptions = Apollo.BaseMutationOptions<AttachPatientMutation, AttachPatientMutationVariables>;
 export const CreatePatientDocument = gql`
     mutation CreatePatient($leadId: String!, $workspaceId: String!, $categorySingularApiName: String!) {
   createPatient(
@@ -3330,6 +3397,7 @@ export const CreatePatientDocument = gql`
     categorySingularApiName: $categorySingularApiName
   ) {
     success
+    patientId
     message
   }
 }

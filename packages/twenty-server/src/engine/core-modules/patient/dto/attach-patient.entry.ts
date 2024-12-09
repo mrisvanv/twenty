@@ -1,17 +1,11 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class CreatePatient {
+export class AttachPatient {
   @Field(() => Boolean, {
     description: 'Boolean that confirms query was dispatched',
   })
   success: boolean;
-
-  @Field(() => Int, {
-    nullable: true,
-    description: 'ID of the patient created',
-  })
-  patientId?: number;
 
   @Field(() => String, {
     nullable: true,

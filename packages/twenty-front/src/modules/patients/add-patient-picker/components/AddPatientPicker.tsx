@@ -8,7 +8,7 @@ import { DropdownMenuSeparator } from '@/ui/layout/dropdown/components/DropdownM
 import { Patient } from '~/generated/graphql';
 
 type AddPatientPickerProps = {
-  onSubmit?: () => void;
+  onSelect?: (patient: Patient) => void;
   onSearchPatient: (searchQuery: string) => void;
   isSearchPatientLoading: boolean;
   patients: Patient[];
@@ -19,7 +19,7 @@ type AddPatientPickerProps = {
 // const NO_PATIENT_ID = 'no-patient';
 
 export const AddPatientPicker = ({
-  onSubmit,
+  onSelect,
   onSearchPatient,
   isSearchPatientLoading,
   patients,
@@ -33,7 +33,7 @@ export const AddPatientPicker = ({
       <DropdownMenuItemsContainer hasMaxHeight>
         <AddPatientPickerList
           patients={patients}
-          onClick={onSubmit}
+          onClick={onSelect}
           isLoading={isSearchPatientLoading}
         />
       </DropdownMenuItemsContainer>

@@ -257,7 +257,7 @@ export class PatientService {
     leadId: string,
     workspaceId: string,
     categorySingularApiName: string,
-  ): Promise<boolean> {
+  ): Promise<number | undefined> {
     const categoryRepository = await this.twentyORMManager.getRepository(
       categorySingularApiName,
     );
@@ -273,7 +273,7 @@ export class PatientService {
 
     const patientId = await this.createPatientInPMS(leadFromORM, workspaceId);
 
-    if (!patientId || typeof patientId !== 'string') {
+    if (!patientId || typeof patientId !== 'number') {
       throw new Error('Patient Creation Failed');
     }
     const updateResponse = await categoryRepository.update(leadId, {
@@ -285,10 +285,10 @@ export class PatientService {
       updateResponse,
     );
     if (updateResponse.affected === 1) {
-      return true;
+      return patientId;
     }
 
-    return false;
+    return;
   }
 
   //   curl --location 'https://celebration.qa1.carestackqa.com//api/v1.0/patients/search' \
@@ -367,5 +367,29 @@ export class PatientService {
     // },
 
     return searchResult;
+  }
+
+  // attach meens add patientId from pms to record/lead
+  async attachPatient(
+    leadId: string,
+    patientId: number,
+    categorySingularApiName: string,
+  ): Promise<boolean> {
+    const categoryRepository = await this.twentyORMManager.getRepository(
+      categorySingularApiName,
+    );
+    const updateResponse = await categoryRepository.update(leadId, {
+      patientId: patientId + '',
+    });
+
+    console.log(
+      '=================Update Response:=============\n',
+      updateResponse,
+    );
+    if (updateResponse.affected === 1) {
+      return true;
+    }
+
+    return false;
   }
 }

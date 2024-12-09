@@ -84,6 +84,7 @@ export const FieldsCard = ({
           fieldMetadataItem.name === 'taskTargets')
       ),
   );
+  useUpdateOneObjectRecordMutation();
 
   return (
     <>

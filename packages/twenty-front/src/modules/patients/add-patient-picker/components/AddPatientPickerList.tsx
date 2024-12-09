@@ -1,3 +1,5 @@
+import { ADD_PATIENT_PICKER_DROPDOWN_ID } from '@/patients/add-patient-picker/constants/AddPatientPickerDropdownId';
+import { useDropdown } from '@/ui/layout/dropdown/hooks/useDropdown';
 import styled from '@emotion/styled';
 import { MenuItem, MenuItemSelectAvatar } from 'twenty-ui';
 import { Patient } from '~/generated/graphql';
@@ -19,6 +21,11 @@ export const AddPatientPickerList = ({
   isLoading,
   onClick,
 }: AddPatientPickerListProps) => {
+  const { closeDropdown } = useDropdown(ADD_PATIENT_PICKER_DROPDOWN_ID);
+  const onClickHandler = (patient: Patient) => {
+    onClick?.(patient);
+    closeDropdown();
+  };
   return (
     <StyledItemsContainer>
       {isLoading ? (
@@ -27,7 +34,7 @@ export const AddPatientPickerList = ({
         patients.map((patient) => (
           <MenuItemSelectAvatar
             key={`menu-${patient.patientId}`}
-            onClick={() => onClick?.(patient)}
+            onClick={() => onClickHandler?.(patient)}
             selected={false}
             text={`${patient.firstName} ${patient.lastName}`}
             // className="no-patient-menu-item-multi-select"
