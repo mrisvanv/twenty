@@ -29,6 +29,44 @@ export const RecordShowActionMenu = ({
 
   const isWorkflowEnabled = useIsFeatureEnabled('IS_WORKFLOW_ENABLED');
 
+  const lines = [
+    {
+      id: 'unsorted',
+      name: 'Unsorted',
+      nameSingular: 'unsortedItem',
+    },
+    {
+      id: 'preventiveCare',
+      name: 'Preventive Care',
+      nameSingular: 'preventiveCareItem',
+    },
+    {
+      id: 'restorative',
+      name: 'Restorative',
+      nameSingular: 'restorativeItem',
+    },
+    {
+      id: 'cosmetic',
+      name: 'Cosmetic',
+      nameSingular: 'cosmeticItems',
+    },
+    {
+      id: 'orthodontics',
+      name: 'Orthodontics',
+      nameSingular: 'orthodonticsItem',
+    },
+    {
+      id: 'emergency',
+      name: 'Emergency Care',
+      nameSingular: 'emergencyCareItem',
+    },
+    {
+      id: 'spam',
+      name: 'Spam',
+      nameSingular: 'spamItem',
+    },
+  ];
+
   // TODO: refactor RecordShowPageBaseHeader to use the context store
 
   return (
@@ -47,6 +85,7 @@ export const RecordShowActionMenu = ({
               objectMetadataItem,
               objectNameSingular,
               handleFavoriteButtonClick,
+              lines,
             }}
           />
           <ActionMenuConfirmationModals />

@@ -176,4 +176,16 @@ export class Workspace {
   @Field()
   @Column({ default: false })
   isMicrosoftAuthEnabled: boolean;
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  pmsAccountKey?: string;
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  pmsAccountId?: string;
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  pmsUrl?: string;
 }

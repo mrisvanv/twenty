@@ -83,21 +83,22 @@ export const useAddNewCard = () => {
         // - avoid drill down props, especially internal stuff
         // - and follow record table pending record creation logic
         let computedLabelIdentifierValue: any = labelValue;
+        if (objectMetadataItem.labelIdentifierFieldMetadataId === undefined) {
+          const labelIdentifierField = objectMetadataItem?.fields.find(
+            (field) =>
+              field.id === objectMetadataItem.labelIdentifierFieldMetadataId,
+          );
 
-        const labelIdentifierField = objectMetadataItem?.fields.find(
-          (field) =>
-            field.id === objectMetadataItem.labelIdentifierFieldMetadataId,
-        );
+          if (!isDefined(labelIdentifierField)) {
+            throw new Error('Label identifier field not found');
+          }
 
-        if (!isDefined(labelIdentifierField)) {
-          throw new Error('Label identifier field not found');
-        }
-
-        if (labelIdentifierField.type === FieldMetadataType.FullName) {
-          computedLabelIdentifierValue = {
-            firstName: labelValue,
-            lastName: '',
-          };
+          if (labelIdentifierField.type === FieldMetadataType.FullName) {
+            computedLabelIdentifierValue = {
+              firstName: labelValue,
+              lastName: '',
+            };
+          }
         }
 
         createOneRecord({

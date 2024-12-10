@@ -74,6 +74,14 @@ export type AppTokenEdge = {
   node: AppToken;
 };
 
+export type AttachPatient = {
+  __typename?: 'AttachPatient';
+  /** Message returned from the query */
+  message?: Maybe<Scalars['String']>;
+  /** Boolean that confirms query was dispatched */
+  success: Scalars['Boolean'];
+};
+
 export type AuthProviders = {
   __typename?: 'AuthProviders';
   google: Scalars['Boolean'];
@@ -185,6 +193,16 @@ export type ClientConfig = {
 export type ComputeStepOutputSchemaInput = {
   /** Step JSON format */
   step: Scalars['JSON'];
+};
+
+export type CreatePatient = {
+  __typename?: 'CreatePatient';
+  /** Message returned from the query */
+  message?: Maybe<Scalars['String']>;
+  /** ID of the patient created */
+  patientId?: Maybe<Scalars['Int']>;
+  /** Boolean that confirms query was dispatched */
+  success: Scalars['Boolean'];
 };
 
 export type CreateServerlessFunctionInput = {
@@ -447,6 +465,7 @@ export type Mutation = {
   activateWorkspace: ActivateWorkspaceOutput;
   addUserToWorkspace: User;
   addUserToWorkspaceByInviteToken: User;
+  attachPatient: AttachPatient;
   authorizeApp: AuthorizeApp;
   challenge: LoginToken;
   checkoutSession: SessionEntity;
@@ -455,6 +474,7 @@ export type Mutation = {
   createOneAppToken: AppToken;
   createOneObject: Object;
   createOneServerlessFunction: ServerlessFunction;
+  createPatient: CreatePatient;
   createSAMLIdentityProvider: SetupSsoOutput;
   createWorkflowVersionStep: WorkflowAction;
   deactivateWorkflowVersion: Scalars['Boolean'];
@@ -479,10 +499,12 @@ export type Mutation = {
   renewToken: AuthTokens;
   resendWorkspaceInvitation: SendInvitationsOutput;
   runWorkflowVersion: WorkflowRun;
+  searchPatients: SearchPatients;
   sendInvitations: SendInvitationsOutput;
   signUp: LoginToken;
   skipSyncEmailOnboardingStep: OnboardingStepSuccess;
   switchWorkspace: PublicWorkspaceDataOutput;
+  syncLocation: SyncLocation;
   track: Analytics;
   updateBillingSubscription: UpdateBillingEntity;
   updateOneObject: Object;
@@ -520,6 +542,13 @@ export type MutationAddUserToWorkspaceByInviteTokenArgs = {
 };
 
 
+export type MutationAttachPatientArgs = {
+  categorySingularApiName: Scalars['String'];
+  leadId: Scalars['String'];
+  patientId: Scalars['Int'];
+};
+
+
 export type MutationAuthorizeAppArgs = {
   clientId: Scalars['String'];
   codeChallenge?: InputMaybe<Scalars['String']>;
@@ -552,6 +581,13 @@ export type MutationCreateOidcIdentityProviderArgs = {
 
 export type MutationCreateOneServerlessFunctionArgs = {
   input: CreateServerlessFunctionInput;
+};
+
+
+export type MutationCreatePatientArgs = {
+  categorySingularApiName: Scalars['String'];
+  leadId: Scalars['String'];
+  workspaceId: Scalars['String'];
 };
 
 
@@ -653,6 +689,12 @@ export type MutationRunWorkflowVersionArgs = {
 };
 
 
+export type MutationSearchPatientsArgs = {
+  searchQuery: Scalars['String'];
+  workspaceId: Scalars['String'];
+};
+
+
 export type MutationSendInvitationsArgs = {
   emails: Array<Scalars['String']>;
 };
@@ -668,6 +710,11 @@ export type MutationSignUpArgs = {
 
 
 export type MutationSwitchWorkspaceArgs = {
+  workspaceId: Scalars['String'];
+};
+
+
+export type MutationSyncLocationArgs = {
   workspaceId: Scalars['String'];
 };
 
@@ -792,6 +839,16 @@ export type PageInfo = {
   hasPreviousPage?: Maybe<Scalars['Boolean']>;
   /** The cursor of the first returned record. */
   startCursor?: Maybe<Scalars['ConnectionCursor']>;
+};
+
+export type Patient = {
+  __typename?: 'Patient';
+  /** Patient First Name */
+  firstName: Scalars['String'];
+  /** Patient Last Name */
+  lastName: Scalars['String'];
+  /** Patient ID */
+  patientId: Scalars['Float'];
 };
 
 export type PostgresCredentials = {
@@ -1032,6 +1089,14 @@ export enum SsoIdentityProviderStatus {
   Inactive = 'Inactive'
 }
 
+export type SearchPatients = {
+  __typename?: 'SearchPatients';
+  /** Message indicating success or failure */
+  message?: Maybe<Scalars['String']>;
+  /** List of patients */
+  result?: Maybe<Array<Patient>>;
+};
+
 export type SendInvitationsOutput = {
   __typename?: 'SendInvitationsOutput';
   errors: Array<Scalars['String']>;
@@ -1154,6 +1219,12 @@ export type Support = {
   __typename?: 'Support';
   supportDriver: Scalars['String'];
   supportFrontChatId?: Maybe<Scalars['String']>;
+};
+
+export type SyncLocation = {
+  __typename?: 'SyncLocation';
+  /** Boolean that confirms query was dispatched */
+  success: Scalars['Boolean'];
 };
 
 export type TimelineCalendarEvent = {
@@ -1426,6 +1497,9 @@ export type Workspace = {
   logo?: Maybe<Scalars['String']>;
   metadataVersion: Scalars['Float'];
   subdomain: Scalars['String'];
+  pmsAccountId?: Maybe<Scalars['String']>;
+  pmsAccountKey?: Maybe<Scalars['String']>;
+  pmsUrl?: Maybe<Scalars['String']>;
   updatedAt: Scalars['DateTime'];
   workspaceMembersCount?: Maybe<Scalars['Float']>;
 };
@@ -1974,6 +2048,13 @@ export type GetClientConfigQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetClientConfigQuery = { __typename?: 'Query', clientConfig: { __typename?: 'ClientConfig', signInPrefilled: boolean, isMultiWorkspaceEnabled: boolean, isSSOEnabled: boolean, defaultSubdomain?: string | null, frontDomain: string, debugMode: boolean, analyticsEnabled: boolean, chromeExtensionId?: string | null, billing: { __typename?: 'Billing', isBillingEnabled: boolean, billingUrl?: string | null, billingFreeTrialDurationInDays?: number | null }, support: { __typename?: 'Support', supportDriver: string, supportFrontChatId?: string | null }, sentry: { __typename?: 'Sentry', dsn?: string | null, environment?: string | null, release?: string | null }, captcha: { __typename?: 'Captcha', provider?: CaptchaDriverType | null, siteKey?: string | null }, api: { __typename?: 'ApiConfig', mutationMaximumAffectedRecords: number } } };
 
+export type SyncLocationMutationVariables = Exact<{
+  workspaceId: Scalars['String'];
+}>;
+
+
+export type SyncLocationMutation = { __typename?: 'Mutation', syncLocation: { __typename?: 'SyncLocation', success: boolean } };
+
 export type SkipSyncEmailOnboardingStepMutationVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1994,6 +2075,32 @@ export type UserLookupAdminPanelMutationVariables = Exact<{
 
 
 export type UserLookupAdminPanelMutation = { __typename?: 'Mutation', userLookupAdminPanel: { __typename?: 'UserLookup', user: { __typename?: 'UserInfo', id: string, email: string, firstName?: string | null, lastName?: string | null }, workspaces: Array<{ __typename?: 'WorkspaceInfo', id: string, name: string, logo?: string | null, totalUsers: number, users: Array<{ __typename?: 'UserInfo', id: string, email: string, firstName?: string | null, lastName?: string | null }>, featureFlags: Array<{ __typename?: 'FeatureFlag', key: string, value: boolean }> }> } };
+
+export type AttachPatientMutationVariables = Exact<{
+  leadId: Scalars['String'];
+  patientId: Scalars['Int'];
+  categorySingularApiName: Scalars['String'];
+}>;
+
+
+export type AttachPatientMutation = { __typename?: 'Mutation', attachPatient: { __typename?: 'AttachPatient', success: boolean, message?: string | null } };
+
+export type CreatePatientMutationVariables = Exact<{
+  leadId: Scalars['String'];
+  workspaceId: Scalars['String'];
+  categorySingularApiName: Scalars['String'];
+}>;
+
+
+export type CreatePatientMutation = { __typename?: 'Mutation', createPatient: { __typename?: 'CreatePatient', success: boolean, patientId?: number | null, message?: string | null } };
+
+export type SearchPatientsMutationVariables = Exact<{
+  searchQuery: Scalars['String'];
+  workspaceId: Scalars['String'];
+}>;
+
+
+export type SearchPatientsMutation = { __typename?: 'Mutation', searchPatients: { __typename?: 'SearchPatients', message?: string | null, result?: Array<{ __typename?: 'Patient', patientId: number, firstName: string, lastName: string }> | null } };
 
 export type CreateOidcIdentityProviderMutationVariables = Exact<{
   input: SetupOidcSsoInput;
@@ -3411,6 +3518,39 @@ export function useGetClientConfigLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type GetClientConfigQueryHookResult = ReturnType<typeof useGetClientConfigQuery>;
 export type GetClientConfigLazyQueryHookResult = ReturnType<typeof useGetClientConfigLazyQuery>;
 export type GetClientConfigQueryResult = Apollo.QueryResult<GetClientConfigQuery, GetClientConfigQueryVariables>;
+export const SyncLocationDocument = gql`
+    mutation SyncLocation($workspaceId: String!) {
+  syncLocation(workspaceId: $workspaceId) {
+    success
+  }
+}
+    `;
+export type SyncLocationMutationFn = Apollo.MutationFunction<SyncLocationMutation, SyncLocationMutationVariables>;
+
+/**
+ * __useSyncLocationMutation__
+ *
+ * To run a mutation, you first call `useSyncLocationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSyncLocationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [syncLocationMutation, { data, loading, error }] = useSyncLocationMutation({
+ *   variables: {
+ *      workspaceId: // value for 'workspaceId'
+ *   },
+ * });
+ */
+export function useSyncLocationMutation(baseOptions?: Apollo.MutationHookOptions<SyncLocationMutation, SyncLocationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SyncLocationMutation, SyncLocationMutationVariables>(SyncLocationDocument, options);
+      }
+export type SyncLocationMutationHookResult = ReturnType<typeof useSyncLocationMutation>;
+export type SyncLocationMutationResult = Apollo.MutationResult<SyncLocationMutation>;
+export type SyncLocationMutationOptions = Apollo.BaseMutationOptions<SyncLocationMutation, SyncLocationMutationVariables>;
 export const SkipSyncEmailOnboardingStepDocument = gql`
     mutation SkipSyncEmailOnboardingStep {
   skipSyncEmailOnboardingStep {
@@ -3534,6 +3674,126 @@ export function useUserLookupAdminPanelMutation(baseOptions?: Apollo.MutationHoo
 export type UserLookupAdminPanelMutationHookResult = ReturnType<typeof useUserLookupAdminPanelMutation>;
 export type UserLookupAdminPanelMutationResult = Apollo.MutationResult<UserLookupAdminPanelMutation>;
 export type UserLookupAdminPanelMutationOptions = Apollo.BaseMutationOptions<UserLookupAdminPanelMutation, UserLookupAdminPanelMutationVariables>;
+export const AttachPatientDocument = gql`
+    mutation AttachPatient($leadId: String!, $patientId: Int!, $categorySingularApiName: String!) {
+  attachPatient(
+    leadId: $leadId
+    patientId: $patientId
+    categorySingularApiName: $categorySingularApiName
+  ) {
+    success
+    message
+  }
+}
+    `;
+export type AttachPatientMutationFn = Apollo.MutationFunction<AttachPatientMutation, AttachPatientMutationVariables>;
+
+/**
+ * __useAttachPatientMutation__
+ *
+ * To run a mutation, you first call `useAttachPatientMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAttachPatientMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [attachPatientMutation, { data, loading, error }] = useAttachPatientMutation({
+ *   variables: {
+ *      leadId: // value for 'leadId'
+ *      patientId: // value for 'patientId'
+ *      categorySingularApiName: // value for 'categorySingularApiName'
+ *   },
+ * });
+ */
+export function useAttachPatientMutation(baseOptions?: Apollo.MutationHookOptions<AttachPatientMutation, AttachPatientMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AttachPatientMutation, AttachPatientMutationVariables>(AttachPatientDocument, options);
+      }
+export type AttachPatientMutationHookResult = ReturnType<typeof useAttachPatientMutation>;
+export type AttachPatientMutationResult = Apollo.MutationResult<AttachPatientMutation>;
+export type AttachPatientMutationOptions = Apollo.BaseMutationOptions<AttachPatientMutation, AttachPatientMutationVariables>;
+export const CreatePatientDocument = gql`
+    mutation CreatePatient($leadId: String!, $workspaceId: String!, $categorySingularApiName: String!) {
+  createPatient(
+    leadId: $leadId
+    workspaceId: $workspaceId
+    categorySingularApiName: $categorySingularApiName
+  ) {
+    success
+    patientId
+    message
+  }
+}
+    `;
+export type CreatePatientMutationFn = Apollo.MutationFunction<CreatePatientMutation, CreatePatientMutationVariables>;
+
+/**
+ * __useCreatePatientMutation__
+ *
+ * To run a mutation, you first call `useCreatePatientMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePatientMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createPatientMutation, { data, loading, error }] = useCreatePatientMutation({
+ *   variables: {
+ *      leadId: // value for 'leadId'
+ *      workspaceId: // value for 'workspaceId'
+ *      categorySingularApiName: // value for 'categorySingularApiName'
+ *   },
+ * });
+ */
+export function useCreatePatientMutation(baseOptions?: Apollo.MutationHookOptions<CreatePatientMutation, CreatePatientMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreatePatientMutation, CreatePatientMutationVariables>(CreatePatientDocument, options);
+      }
+export type CreatePatientMutationHookResult = ReturnType<typeof useCreatePatientMutation>;
+export type CreatePatientMutationResult = Apollo.MutationResult<CreatePatientMutation>;
+export type CreatePatientMutationOptions = Apollo.BaseMutationOptions<CreatePatientMutation, CreatePatientMutationVariables>;
+export const SearchPatientsDocument = gql`
+    mutation SearchPatients($searchQuery: String!, $workspaceId: String!) {
+  searchPatients(searchQuery: $searchQuery, workspaceId: $workspaceId) {
+    result {
+      patientId
+      firstName
+      lastName
+    }
+    message
+  }
+}
+    `;
+export type SearchPatientsMutationFn = Apollo.MutationFunction<SearchPatientsMutation, SearchPatientsMutationVariables>;
+
+/**
+ * __useSearchPatientsMutation__
+ *
+ * To run a mutation, you first call `useSearchPatientsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSearchPatientsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [searchPatientsMutation, { data, loading, error }] = useSearchPatientsMutation({
+ *   variables: {
+ *      searchQuery: // value for 'searchQuery'
+ *      workspaceId: // value for 'workspaceId'
+ *   },
+ * });
+ */
+export function useSearchPatientsMutation(baseOptions?: Apollo.MutationHookOptions<SearchPatientsMutation, SearchPatientsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SearchPatientsMutation, SearchPatientsMutationVariables>(SearchPatientsDocument, options);
+      }
+export type SearchPatientsMutationHookResult = ReturnType<typeof useSearchPatientsMutation>;
+export type SearchPatientsMutationResult = Apollo.MutationResult<SearchPatientsMutation>;
+export type SearchPatientsMutationOptions = Apollo.BaseMutationOptions<SearchPatientsMutation, SearchPatientsMutationVariables>;
 export const CreateOidcIdentityProviderDocument = gql`
     mutation CreateOIDCIdentityProvider($input: SetupOIDCSsoInput!) {
   createOIDCIdentityProvider(input: $input) {

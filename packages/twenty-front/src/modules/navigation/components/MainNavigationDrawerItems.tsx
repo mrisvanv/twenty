@@ -33,7 +33,15 @@ export const MainNavigationDrawerItems = () => {
   const setNavigationDrawerExpandedMemorized = useSetRecoilState(
     navigationDrawerExpandedMemorizedState,
   );
-
+  const LEADS = [
+    'unsortedItem',
+    'preventiveCareItem',
+    'restorativeItem',
+    'cosmeticItems',
+    'orthodonticsItem',
+    'emergencyCareItem',
+    'spamItem',
+  ];
   return (
     <>
       {!isMobile && (
@@ -63,7 +71,8 @@ export const MainNavigationDrawerItems = () => {
       >
         <NavigationDrawerOpenedSection />
         <CurrentWorkspaceMemberFavoritesFolders />
-        <WorkspaceFavorites />
+        <WorkspaceFavorites objects={LEADS} sectionTitle={'Leads'} />
+        <WorkspaceFavorites skipObjects={LEADS} />
         <RemoteNavigationDrawerSection />
       </ScrollWrapper>
     </>

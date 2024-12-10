@@ -155,6 +155,9 @@ export class EnvironmentVariables {
   @IsString()
   ACCESS_TOKEN_SECRET: string;
 
+  @IsString()
+  PMS_VENDOR_KEY: string;
+
   @IsDuration()
   @IsOptional()
   ACCESS_TOKEN_EXPIRES_IN = '30m';

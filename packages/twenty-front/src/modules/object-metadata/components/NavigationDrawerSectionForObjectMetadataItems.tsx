@@ -8,11 +8,18 @@ import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 
 const ORDERED_STANDARD_OBJECTS = [
-  'person',
-  'company',
-  'opportunity',
-  'task',
-  'note',
+  // 'person',
+  // 'company',
+  // 'opportunity',
+  // 'task',
+  // 'note',
+  'unsortedItem',
+  'preventiveCareItem',
+  'restorativeItem',
+  'cosmeticItems',
+  'orthodonticsItem',
+  'emergencyCareItem',
+  'spamItem',
 ];
 
 const StyledObjectsMetaDataItemsWrapper = styled.div`

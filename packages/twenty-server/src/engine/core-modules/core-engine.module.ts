@@ -26,12 +26,14 @@ import { LLMChatModelModule } from 'src/engine/core-modules/llm-chat-model/llm-c
 import { llmChatModelModuleFactory } from 'src/engine/core-modules/llm-chat-model/llm-chat-model.module-factory';
 import { LLMTracingModule } from 'src/engine/core-modules/llm-tracing/llm-tracing.module';
 import { llmTracingModuleFactory } from 'src/engine/core-modules/llm-tracing/llm-tracing.module-factory';
+import { LocationModule } from 'src/engine/core-modules/location/location.module';
 import { LoggerModule } from 'src/engine/core-modules/logger/logger.module';
 import { loggerModuleFactory } from 'src/engine/core-modules/logger/logger.module-factory';
 import { MessageQueueModule } from 'src/engine/core-modules/message-queue/message-queue.module';
 import { messageQueueModuleFactory } from 'src/engine/core-modules/message-queue/message-queue.module-factory';
 import { TimelineMessagingModule } from 'src/engine/core-modules/messaging/timeline-messaging.module';
 import { OpenApiModule } from 'src/engine/core-modules/open-api/open-api.module';
+import { PatientModule } from 'src/engine/core-modules/patient/patient.module';
 import { PostgresCredentialsModule } from 'src/engine/core-modules/postgres-credentials/postgres-credentials.module';
 import { RedisClientModule } from 'src/engine/core-modules/redis-client/redis-client.module';
 import { RedisClientService } from 'src/engine/core-modules/redis-client/redis-client.service';
@@ -70,6 +72,8 @@ import { FileModule } from './file/file.module';
     WorkflowApiModule,
     WorkspaceEventEmitterModule,
     ActorModule,
+    LocationModule,
+    PatientModule,
     TelemetryModule,
     AdminPanelModule,
     EnvironmentModule.forRoot({}),
