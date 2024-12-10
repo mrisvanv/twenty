@@ -1,5 +1,4 @@
-import { BadRequestException } from '@nestjs/common';
-import { ModuleRef } from '@nestjs/core';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import assert from 'assert';
@@ -19,10 +18,16 @@ import {
 } from 'src/engine/core-modules/workspace/workspace.entity';
 import { WorkspaceManagerService } from 'src/engine/workspace-manager/workspace-manager.service';
 import { DEFAULT_FEATURE_FLAGS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/default-feature-flags';
+import {
+  WorkspaceException,
+  WorkspaceExceptionCode,
+} from 'src/engine/core-modules/workspace/workspace.exception';
+import { workspaceValidator } from 'src/engine/core-modules/workspace/workspace.validate';
+import { EnvironmentService } from 'src/engine/core-modules/environment/environment.service';
 
+@Injectable()
 // eslint-disable-next-line @nx/workspace-inject-workspace-repository
 export class WorkspaceService extends TypeOrmQueryService<Workspace> {
-  private userWorkspaceService: UserWorkspaceService;
   constructor(
     @InjectRepository(Workspace, 'core')
     private readonly workspaceRepository: Repository<Workspace>,
@@ -33,11 +38,44 @@ export class WorkspaceService extends TypeOrmQueryService<Workspace> {
     private readonly workspaceManagerService: WorkspaceManagerService,
     private readonly featureFlagService: FeatureFlagService,
     private readonly billingSubscriptionService: BillingSubscriptionService,
-    private moduleRef: ModuleRef,
+    private readonly userWorkspaceService: UserWorkspaceService,
+    private readonly environmentService: EnvironmentService,
   ) {
     super(workspaceRepository);
-    this.userWorkspaceService = this.moduleRef.get(UserWorkspaceService, {
-      strict: false,
+  }
+
+  async updateWorkspaceById(payload: Partial<Workspace> & { id: string }) {
+    const workspace = await this.workspaceRepository.findOneBy({
+      id: payload.id,
+    });
+
+    workspaceValidator.assertIsExist(
+      workspace,
+      new WorkspaceException(
+        'Workspace not found',
+        WorkspaceExceptionCode.WORKSPACE_NOT_FOUND,
+      ),
+    );
+
+    if (payload.subdomain && workspace.subdomain !== payload.subdomain) {
+      const subdomainAvailable = await this.isSubdomainAvailable(
+        payload.subdomain,
+      );
+
+      if (
+        !subdomainAvailable ||
+        this.environmentService.get('DEFAULT_SUBDOMAIN') === payload.subdomain
+      ) {
+        throw new WorkspaceException(
+          'Subdomain already taken',
+          WorkspaceExceptionCode.SUBDOMAIN_ALREADY_TAKEN,
+        );
+      }
+    }
+
+    return this.workspaceRepository.save({
+      ...workspace,
+      ...payload,
     });
   }
 
@@ -82,12 +120,15 @@ export class WorkspaceService extends TypeOrmQueryService<Workspace> {
       user.defaultWorkspaceId,
       user,
     );
+
     await this.workspaceRepository.update(user.defaultWorkspaceId, {
       displayName: data.displayName,
       activationStatus: WorkspaceActivationStatus.ACTIVE,
     });
 
-    return existingWorkspace;
+    return await this.workspaceRepository.findOneBy({
+      id: user.defaultWorkspaceId,
+    });
   }
 
   async softDeleteWorkspace(id: string) {
@@ -159,5 +200,13 @@ export class WorkspaceService extends TypeOrmQueryService<Workspace> {
         },
       );
     }
+  }
+
+  async isSubdomainAvailable(subdomain: string) {
+    const existingWorkspace = await this.workspaceRepository.findOne({
+      where: { subdomain: subdomain },
+    });
+
+    return !existingWorkspace;
   }
 }

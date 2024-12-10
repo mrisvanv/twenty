@@ -1,25 +1,17 @@
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
-import { PageFavoriteFoldersDropdown } from '@/favorites/components/PageFavoriteFolderDropdown';
-import { FAVORITE_FOLDER_PICKER_DROPDOWN_ID } from '@/favorites/favorite-folder-picker/constants/FavoriteFolderPickerDropdownId';
-import { useFavorites } from '@/favorites/hooks/useFavorites';
 import { useFilteredObjectMetadataItems } from '@/object-metadata/hooks/useFilteredObjectMetadataItems';
 import { isObjectMetadataReadOnly } from '@/object-metadata/utils/isObjectMetadataReadOnly';
 import { RecordIndexPageKanbanAddButton } from '@/object-record/record-index/components/RecordIndexPageKanbanAddButton';
 import { RecordIndexRootPropsContext } from '@/object-record/record-index/contexts/RecordIndexRootPropsContext';
 import { recordIndexViewTypeState } from '@/object-record/record-index/states/recordIndexViewTypeState';
-import { usePrefetchedData } from '@/prefetch/hooks/usePrefetchedData';
-import { PrefetchKey } from '@/prefetch/types/PrefetchKey';
+import { PageHeaderOpenCommandMenuButton } from '@/ui/layout/page-header/components/PageHeaderOpenCommandMenuButton';
 import { SnackBarVariant } from '@/ui/feedback/snack-bar-manager/components/SnackBar';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { LocationSyncButton } from '@/ui/layout/page/components/LocationSyncButton';
 import { PageAddButton } from '@/ui/layout/page/components/PageAddButton';
 import { PageHeader } from '@/ui/layout/page/components/PageHeader';
 import { PageHotkeysEffect } from '@/ui/layout/page/components/PageHotkeysEffect';
-import { useRecoilComponentValueV2 } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValueV2';
-import { currentViewIdComponentState } from '@/views/states/currentViewIdComponentState';
-import { View } from '@/views/types/View';
 import { ViewType } from '@/views/types/ViewType';
-import { useIsFeatureEnabled } from '@/workspace/hooks/useIsFeatureEnabled';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
@@ -31,11 +23,8 @@ export const RecordIndexPageHeader = () => {
   const [syncLocationMutation] = useSyncLocationMutation();
   const { findObjectMetadataItemByNamePlural } =
     useFilteredObjectMetadataItems();
-  const isFavoriteFolderEnabled = useIsFeatureEnabled(
-    'IS_FAVORITE_FOLDER_ENABLED',
-  );
 
-  const { objectNamePlural, onCreateRecord, recordIndexId } = useContext(
+  const { objectNamePlural, onCreateRecord } = useContext(
     RecordIndexRootPropsContext,
   );
   const { records: views } = usePrefetchedData<View>(PrefetchKey.AllViews);
@@ -126,6 +115,7 @@ export const RecordIndexPageHeader = () => {
         ) : (
           <RecordIndexPageKanbanAddButton />
         ))}
+      <PageHeaderOpenCommandMenuButton />
     </PageHeader>
   );
 };

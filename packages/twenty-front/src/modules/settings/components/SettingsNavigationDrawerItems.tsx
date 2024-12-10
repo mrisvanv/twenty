@@ -12,15 +12,17 @@ import {
   IconHierarchy2,
   IconKey,
   IconMail,
+  IconPoint,
   IconRocket,
+  IconServer,
   IconSettings,
-  IconTool,
   IconUserCircle,
   IconUsers,
   MAIN_COLORS,
 } from 'twenty-ui';
 
 import { useAuth } from '@/auth/hooks/useAuth';
+import { currentUserState } from '@/auth/states/currentUserState';
 import { billingState } from '@/client-config/states/billingState';
 import { SettingsNavigationDrawerItem } from '@/settings/components/SettingsNavigationDrawerItem';
 import { useExpandedAnimation } from '@/settings/hooks/useExpandedAnimation';
@@ -49,22 +51,19 @@ type SettingsNavigationItem = {
 };
 
 const StyledIconContainer = styled.div`
-  border-right: 1px solid ${MAIN_COLORS.yellow};
   position: absolute;
   left: ${({ theme }) => theme.spacing(-5)};
-  margin-top: ${({ theme }) => theme.spacing(2)};
-  height: 75%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 `;
 
-const StyledDeveloperSection = styled.div`
-  display: flex;
-  width: 100%;
-  gap: ${({ theme }) => theme.spacing(1)};
+const StyledContainer = styled.div`
   position: relative;
 `;
 
-const StyledIconTool = styled(IconTool)`
-  margin-right: ${({ theme }) => theme.spacing(0.5)};
+const StyledIconPoint = styled(IconPoint)`
+  margin-right: 0;
 `;
 
 export const SettingsNavigationDrawerItems = () => {
@@ -80,10 +79,11 @@ export const SettingsNavigationDrawerItems = () => {
   );
   const isFreeAccessEnabled = useIsFeatureEnabled('IS_FREE_ACCESS_ENABLED');
   const isCRMMigrationEnabled = useIsFeatureEnabled('IS_CRM_MIGRATION_ENABLED');
-  const isSSOEnabled = useIsFeatureEnabled('IS_SSO_ENABLED');
   const isBillingPageEnabled =
     billing?.isBillingEnabled && !isFreeAccessEnabled;
 
+  const currentUser = useRecoilValue(currentUserState);
+  const isAdminPageEnabled = currentUser?.canImpersonate;
   // TODO: Refactor this part to only have arrays of navigation items
   const currentPathName = useLocation().pathname;
 
@@ -188,14 +188,24 @@ export const SettingsNavigationDrawerItems = () => {
             Icon={IconCode}
           />
         )}
-        {isSSOEnabled && (
-          <SettingsNavigationDrawerItem
-            label="Security"
-            path={SettingsPath.Security}
-            Icon={IconKey}
-          />
+        {isAdvancedModeEnabled && (
+          <StyledContainer>
+            <StyledIconContainer>
+              <StyledIconPoint
+                size={12}
+                color={MAIN_COLORS.yellow}
+                fill={MAIN_COLORS.yellow}
+              />
+            </StyledIconContainer>
+            <SettingsNavigationDrawerItem
+              label="Security"
+              path={SettingsPath.Security}
+              Icon={IconKey}
+            />
+          </StyledContainer>
         )}
       </NavigationDrawerSection>
+
       <AnimatePresence>
         {isAdvancedModeEnabled && (
           <motion.div
@@ -205,31 +215,53 @@ export const SettingsNavigationDrawerItems = () => {
             exit="exit"
             variants={motionAnimationVariants}
           >
-            <StyledDeveloperSection>
-              <StyledIconContainer>
-                <StyledIconTool size={12} color={MAIN_COLORS.yellow} />
-              </StyledIconContainer>
-              <NavigationDrawerSection>
-                <NavigationDrawerSectionTitle label="Developers" />
+            <NavigationDrawerSection>
+              <NavigationDrawerSectionTitle label="Developers" />
+              <StyledContainer>
+                <StyledIconContainer>
+                  <StyledIconPoint
+                    size={12}
+                    color={MAIN_COLORS.yellow}
+                    fill={MAIN_COLORS.yellow}
+                  />
+                </StyledIconContainer>
+
                 <SettingsNavigationDrawerItem
                   label="API & Webhooks"
                   path={SettingsPath.Developers}
                   Icon={IconCode}
                 />
-                {isFunctionSettingsEnabled && (
+              </StyledContainer>
+              {isFunctionSettingsEnabled && (
+                <StyledContainer>
+                  <StyledIconContainer>
+                    <StyledIconPoint
+                      size={12}
+                      color={MAIN_COLORS.yellow}
+                      fill={MAIN_COLORS.yellow}
+                    />
+                  </StyledIconContainer>
+
                   <SettingsNavigationDrawerItem
                     label="Functions"
                     path={SettingsPath.ServerlessFunctions}
                     Icon={IconFunction}
                   />
-                )}
-              </NavigationDrawerSection>
-            </StyledDeveloperSection>
+                </StyledContainer>
+              )}
+            </NavigationDrawerSection>
           </motion.div>
         )}
       </AnimatePresence>
       <NavigationDrawerSection>
         <NavigationDrawerSectionTitle label="Other" />
+        {isAdminPageEnabled && (
+          <SettingsNavigationDrawerItem
+            label="Server Admin Panel"
+            path={SettingsPath.AdminPanel}
+            Icon={IconServer}
+          />
+        )}
         <SettingsNavigationDrawerItem
           label="Releases"
           path={SettingsPath.Releases}

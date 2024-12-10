@@ -41,22 +41,18 @@ export const RecordTableHeaderPlusButtonContent = () => {
 
   return (
     <>
-      {hiddenTableColumns.length > 0 && (
-        <>
-          <DropdownMenuItemsContainer>
-            {hiddenTableColumns.map((column) => (
-              <MenuItem
-                key={column.fieldMetadataId}
-                onClick={() => handleAddColumn(column)}
-                LeftIcon={getIcon(column.iconName)}
-                text={column.label}
-              />
-            ))}
-          </DropdownMenuItemsContainer>
-          <DropdownMenuSeparator />
-        </>
-      )}
       <DropdownMenuItemsContainer>
+        {hiddenTableColumns.map((column) => (
+          <MenuItem
+            key={column.fieldMetadataId}
+            onClick={() => handleAddColumn(column)}
+            LeftIcon={getIcon(column.iconName)}
+            text={column.label}
+          />
+        ))}
+      </DropdownMenuItemsContainer>
+      <DropdownMenuSeparator />
+      <DropdownMenuItemsContainer withoutScrollWrapper>
         <UndecoratedLink
           fullWidth
           to={`/settings/objects/${getObjectSlug(objectMetadataItem)}`}

@@ -1,6 +1,5 @@
-import styled from '@emotion/styled';
-
 import { ScrollWrapper } from '@/ui/utilities/scroll/components/ScrollWrapper';
+import styled from '@emotion/styled';
 
 const StyledDropdownMenuItemsExternalContainer = styled.div<{
   hasMaxHeight?: boolean;
@@ -18,10 +17,6 @@ const StyledDropdownMenuItemsExternalContainer = styled.div<{
   width: calc(100% - 2 * var(--padding));
 `;
 
-const StyledScrollWrapper = styled(ScrollWrapper)`
-  width: 100%;
-`;
-
 const StyledDropdownMenuItemsInternalContainer = styled.div`
   align-items: stretch;
   display: flex;
@@ -32,18 +27,24 @@ const StyledDropdownMenuItemsInternalContainer = styled.div`
   width: 100%;
 `;
 
+const StyledScrollWrapper = styled(ScrollWrapper)`
+  width: 100%;
+`;
+
 // TODO: refactor this, the dropdown should handle the max height behavior + scroll with the size middleware
 // We should instead create a DropdownMenuItemsContainerScrollable or take for granted that it is the default behavior
 export const DropdownMenuItemsContainer = ({
   children,
   hasMaxHeight,
   className,
+  withoutScrollWrapper,
 }: {
   children: React.ReactNode;
   hasMaxHeight?: boolean;
   className?: string;
+  withoutScrollWrapper?: boolean;
 }) => {
-  return (
+  return withoutScrollWrapper === true ? (
     <StyledDropdownMenuItemsExternalContainer
       hasMaxHeight={hasMaxHeight}
       className={className}
@@ -60,5 +61,16 @@ export const DropdownMenuItemsContainer = ({
         </StyledDropdownMenuItemsInternalContainer>
       )}
     </StyledDropdownMenuItemsExternalContainer>
+  ) : (
+    <ScrollWrapper contextProviderName="dropdownMenuItemsContainer">
+      <StyledDropdownMenuItemsExternalContainer
+        hasMaxHeight={hasMaxHeight}
+        className={className}
+      >
+        <StyledDropdownMenuItemsInternalContainer>
+          {children}
+        </StyledDropdownMenuItemsInternalContainer>
+      </StyledDropdownMenuItemsExternalContainer>
+    </ScrollWrapper>
   );
 };
