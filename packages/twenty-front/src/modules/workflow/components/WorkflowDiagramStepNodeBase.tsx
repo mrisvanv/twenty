@@ -76,7 +76,9 @@ export const WorkflowDiagramStepNodeBase = ({
               </StyledStepNodeLabelIconContainer>
             );
           }
-          case 'RECORD_CRUD.CREATE': {
+          case 'CREATE_RECORD':
+          case 'UPDATE_RECORD':
+          case 'DELETE_RECORD': {
             return (
               <StyledStepNodeLabelIconContainer>
                 <IconAddressBook
@@ -87,10 +89,6 @@ export const WorkflowDiagramStepNodeBase = ({
               </StyledStepNodeLabelIconContainer>
             );
           }
-          case 'RECORD_CRUD.DELETE':
-          case 'RECORD_CRUD.UPDATE': {
-            return null;
-          }
         }
       }
     }
@@ -100,8 +98,8 @@ export const WorkflowDiagramStepNodeBase = ({
 
   return (
     <WorkflowDiagramBaseStepNode
+      name={data.name}
       nodeType={data.nodeType}
-      label={data.label}
       Icon={renderStepIcon()}
       RightFloatingElement={RightFloatingElement}
     />
