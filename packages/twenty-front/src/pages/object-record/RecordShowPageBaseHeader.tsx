@@ -3,10 +3,10 @@ import { PageFavoriteFoldersDropdown } from '@/favorites/components/PageFavorite
 import { FAVORITE_FOLDER_PICKER_DROPDOWN_ID } from '@/favorites/favorite-folder-picker/constants/FavoriteFolderPickerDropdownId';
 import { ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import { ObjectRecord } from '@/object-record/types/ObjectRecord';
+import { PageHeaderOpenCommandMenuButton } from '@/ui/layout/page-header/components/PageHeaderOpenCommandMenuButton';
 import { ADD_PATIENT_PICKER_DROPDOWN_ID } from '@/patients/add-patient-picker/constants/AddPatientPickerDropdownId';
 import { PageAddPatientDropdown } from '@/patients/components/PageAddPatientDropdown';
 import { ShowPageAddButton } from '@/ui/layout/show-page/components/ShowPageAddButton';
-import { ShowPageMoreButton } from '@/ui/layout/show-page/components/ShowPageMoreButton';
 import { ShowPageMoveButton } from '@/ui/layout/show-page/components/ShowPageMoveButton';
 import { useIsFeatureEnabled } from '@/workspace/hooks/useIsFeatureEnabled';
 import { Button, IconUser } from 'twenty-ui';
@@ -89,7 +89,7 @@ export const RecordShowPageBaseHeader = ({
           )}
         </>
       )}
-      <ShowPageMoreButton key="more" />
+      <PageHeaderOpenCommandMenuButton key="more" />
     </>
   );
 };

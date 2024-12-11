@@ -11,6 +11,7 @@ import { usePrefetchedData } from '@/prefetch/hooks/usePrefetchedData';
 import { PrefetchKey } from '@/prefetch/types/PrefetchKey';
 import { SnackBarVariant } from '@/ui/feedback/snack-bar-manager/components/SnackBar';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
+import { PageHeaderOpenCommandMenuButton } from '@/ui/layout/page-header/components/PageHeaderOpenCommandMenuButton';
 import { LocationSyncButton } from '@/ui/layout/page/components/LocationSyncButton';
 import { PageAddButton } from '@/ui/layout/page/components/PageAddButton';
 import { PageHeader } from '@/ui/layout/page/components/PageHeader';
@@ -19,11 +20,10 @@ import { useRecoilComponentValueV2 } from '@/ui/utilities/state/component-state/
 import { currentViewIdComponentState } from '@/views/states/currentViewIdComponentState';
 import { View } from '@/views/types/View';
 import { ViewType } from '@/views/types/ViewType';
-import { useIsFeatureEnabled } from '@/workspace/hooks/useIsFeatureEnabled';
+import { useIcons } from '@ui/display';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { useIcons } from 'twenty-ui';
 import { useSyncLocationMutation } from '~/generated/graphql';
 import { capitalize } from '~/utils/string/capitalize';
 
@@ -31,11 +31,8 @@ export const RecordIndexPageHeader = () => {
   const [syncLocationMutation] = useSyncLocationMutation();
   const { findObjectMetadataItemByNamePlural } =
     useFilteredObjectMetadataItems();
-  const isFavoriteFolderEnabled = useIsFeatureEnabled(
-    'IS_FAVORITE_FOLDER_ENABLED',
-  );
 
-  const { objectNamePlural, onCreateRecord, recordIndexId } = useContext(
+  const { objectNamePlural, onCreateRecord } = useContext(
     RecordIndexRootPropsContext,
   );
   const { records: views } = usePrefetchedData<View>(PrefetchKey.AllViews);
@@ -126,6 +123,7 @@ export const RecordIndexPageHeader = () => {
         ) : (
           <RecordIndexPageKanbanAddButton />
         ))}
+      <PageHeaderOpenCommandMenuButton />
     </PageHeader>
   );
 };
