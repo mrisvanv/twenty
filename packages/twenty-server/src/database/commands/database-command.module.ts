@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { DataSeedCSWorkspaceCommand } from 'src/database/commands/data-seed-csdev-workspace.command';
 import { StartDataSeedDemoWorkspaceCronCommand } from 'src/database/commands/data-seed-demo-workspace/crons/start-data-seed-demo-workspace.cron.command';
 import { StopDataSeedDemoWorkspaceCronCommand } from 'src/database/commands/data-seed-demo-workspace/crons/stop-data-seed-demo-workspace.cron.command';
 import { DataSeedDemoWorkspaceCommand } from 'src/database/commands/data-seed-demo-workspace/data-seed-demo-workspace-command';
@@ -53,6 +54,7 @@ import { WorkspaceSyncMetadataModule } from 'src/engine/workspace-manager/worksp
   ],
   providers: [
     DataSeedWorkspaceCommand,
+    DataSeedCSWorkspaceCommand,
     DataSeedDemoWorkspaceCommand,
     ConfirmationQuestion,
     StartDataSeedDemoWorkspaceCronCommand,

@@ -5,8 +5,8 @@ import { EntityManager } from 'typeorm';
 
 import { seedCoreSchema } from 'src/database/typeorm-seeds/core';
 import {
-  SEED_APPLE_WORKSPACE_ID,
   SEED_ACME_WORKSPACE_ID,
+  SEED_APPLE_WORKSPACE_ID,
 } from 'src/database/typeorm-seeds/core/workspaces';
 import {
   getDevSeedCompanyCustomFields,
