@@ -38,4 +38,5 @@ export const STANDARD_OBJECT_ICONS = {
   workflowRun: 'IconSettingsAutomation',
   workflowVersion: 'IconSettingsAutomation',
   workspaceMember: 'IconUserCircle',
+  location: 'IconLocation',
 };

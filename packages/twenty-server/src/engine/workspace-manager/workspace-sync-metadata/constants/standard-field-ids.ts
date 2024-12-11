@@ -226,6 +226,12 @@ export const FAVORITE_FOLDER_STANDARD_FIELD_IDS = {
   favorites: '20202020-b5e3-4b42-8af2-03cd4fd2e4d2',
 };
 
+export const LOCATION_STANDARD_FIELD_IDS = {
+  position: '20202020-592f-4bcc-8330-b8ce7df5a14c',
+  name: '20202020-54df-4b71-9a0a-0ced8f91a8a7',
+  locationId: '20202020-9c45-4369-9997-12899b8881b5',
+};
+
 export const MESSAGE_CHANNEL_MESSAGE_ASSOCIATION_STANDARD_FIELD_IDS = {
   messageChannel: '20202020-b658-408f-bd46-3bd2d15d7e52',
   message: '20202020-da5d-4ac5-8743-342ab0a0336b',
@@ -568,4 +574,5 @@ export const STANDARD_OBJECT_FIELD_IDS = {
   workflowRun: WORKFLOW_RUN_STANDARD_FIELD_IDS,
   workflowVersion: WORKFLOW_VERSION_STANDARD_FIELD_IDS,
   workspaceMember: WORKSPACE_MEMBER_STANDARD_FIELD_IDS,
+  location: LOCATION_STANDARD_FIELD_IDS,
 };

@@ -13,10 +13,10 @@ import { PageHeader } from '@/ui/layout/page/components/PageHeader';
 import { PageHotkeysEffect } from '@/ui/layout/page/components/PageHotkeysEffect';
 import { ViewType } from '@/views/types/ViewType';
 import { useIsFeatureEnabled } from '@/workspace/hooks/useIsFeatureEnabled';
+import { useIcons } from '@ui/display';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { useIcons } from 'twenty-ui';
 import { useSyncLocationMutation } from '~/generated/graphql';
 import { capitalize } from '~/utils/string/capitalize';
 
