@@ -13,6 +13,7 @@ import { NOTE_TARGET_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/wor
 import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-icons';
 import { STANDARD_OBJECT_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-ids';
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
+import { UnsortedItemWorkspaceEntity } from 'src/modules/cs/leads/unsorted-item/standard-objects/unsortedItem.workspace-entry';
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
 import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
@@ -101,4 +102,20 @@ export class NoteTargetWorkspaceEntity extends BaseWorkspaceEntity {
     inverseSideFieldKey: 'noteTargets',
   })
   custom: Relation<CustomWorkspaceEntity>;
+
+  // UnsortedItem
+  @WorkspaceRelation({
+    standardId: NOTE_TARGET_STANDARD_FIELD_IDS.unsortedItem,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Unsorted Item',
+    description: 'Unsorted Item',
+    icon: STANDARD_OBJECT_ICONS.unsortedItem,
+    inverseSideTarget: () => UnsortedItemWorkspaceEntity,
+    inverseSideFieldKey: 'noteTargets',
+  })
+  @WorkspaceIsNullable()
+  unsortedItem: Relation<UnsortedItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('unsortedItem')
+  unsortedItemId: string | null;
 }

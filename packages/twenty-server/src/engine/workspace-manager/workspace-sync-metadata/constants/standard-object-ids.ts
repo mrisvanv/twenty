@@ -49,4 +49,5 @@ export const STANDARD_OBJECT_IDS = {
   workflowVersion: '20202020-d65d-4ab9-9344-d77bfb376a3d',
   workspaceMember: '20202020-3319-4234-a34c-82d5c0e881a6',
   location: '20202020-6be6-44df-b958-19df8164e486',
+  unsortedItem: '20202020-6b6b-4b6b-8b6b-6b6b6b6b6b6b',
 };

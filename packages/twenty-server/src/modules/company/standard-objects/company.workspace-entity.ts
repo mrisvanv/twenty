@@ -58,6 +58,7 @@ export const SEARCH_FIELDS_FOR_COMPANY: FieldTypeAndNameMetadata[] = [
   shortcut: 'C',
   labelIdentifierStandardId: COMPANY_STANDARD_FIELD_IDS.name,
 })
+@WorkspaceIsSystem()
 export class CompanyWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceField({
     standardId: COMPANY_STANDARD_FIELD_IDS.name,

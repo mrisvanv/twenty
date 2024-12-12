@@ -265,4 +265,20 @@ export class TimelineActivityWorkspaceEntity extends BaseWorkspaceEntity {
     inverseSideFieldKey: 'timelineActivities',
   })
   custom: Relation<CustomWorkspaceEntity>;
+
+  // UnsortedItem
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.unsortedItem,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Unsorted Item',
+    description: 'Unsorted Item',
+    icon: STANDARD_OBJECT_ICONS.unsortedItem,
+    inverseSideTarget: () => CustomWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+  })
+  @WorkspaceIsNullable()
+  unsortedItem: Relation<CustomWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('unsortedItem')
+  unsortedItemId: string | null;
 }

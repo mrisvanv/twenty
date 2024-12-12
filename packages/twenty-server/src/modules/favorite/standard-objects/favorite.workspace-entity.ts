@@ -18,6 +18,8 @@ import { FAVORITE_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/worksp
 import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-icons';
 import { STANDARD_OBJECT_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-ids';
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
+import { UnsortedItemWorkspaceEntity } from 'src/modules/cs/leads/unsorted-item/standard-objects/unsortedItem.workspace-entry';
+import { LocationWorkspaceEntity } from 'src/modules/cs/location/standard-objects/location.workspace-entry';
 import { FavoriteFolderWorkspaceEntity } from 'src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity';
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
 import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
@@ -254,4 +256,36 @@ export class FavoriteWorkspaceEntity extends BaseWorkspaceEntity {
     inverseSideFieldKey: 'favorites',
   })
   custom: Relation<CustomWorkspaceEntity>;
+
+  // Location
+  @WorkspaceRelation({
+    standardId: FAVORITE_STANDARD_FIELD_IDS.location,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Location',
+    description: 'Location',
+    icon: 'IconLocation',
+    inverseSideTarget: () => LocationWorkspaceEntity,
+    inverseSideFieldKey: 'favorites',
+  })
+  @WorkspaceIsNullable()
+  location: Relation<LocationWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('location')
+  locationId: string;
+
+  // UnsortedItem
+  @WorkspaceRelation({
+    standardId: FAVORITE_STANDARD_FIELD_IDS.unsortedItem,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Unsorted Item',
+    description: 'Unsorted Item',
+    icon: STANDARD_OBJECT_ICONS.unsortedItem,
+    inverseSideTarget: () => UnsortedItemWorkspaceEntity,
+    inverseSideFieldKey: 'favorites',
+  })
+  @WorkspaceIsNullable()
+  unsortedItem: Relation<UnsortedItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('unsortedItem')
+  unsortedItemId: string;
 }

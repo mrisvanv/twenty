@@ -2,7 +2,7 @@ import { ObjectMetadataEntity } from 'src/engine/metadata-modules/object-metadat
 import { LOCATION_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-field-ids';
 import { STANDARD_OBJECT_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-ids';
 
-export const locationAllView = (
+export const locationsAllView = (
   objectMetadataMap: Record<string, ObjectMetadataEntity>,
 ) => {
   return {

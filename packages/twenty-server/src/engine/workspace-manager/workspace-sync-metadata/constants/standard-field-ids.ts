@@ -47,6 +47,8 @@ export const ATTACHMENT_STANDARD_FIELD_IDS = {
   company: '20202020-ceab-4a28-b546-73b06b4c08d5',
   opportunity: '20202020-7374-499d-bea3-9354890755b5',
   custom: '20202020-302d-43b3-9aea-aa4f89282a9f',
+
+  unsortedItem: '20202020-b7e7-43e6-85a4-08c5bc6f4f8f',
 };
 
 export const BASE_OBJECT_STANDARD_FIELD_IDS = {
@@ -202,6 +204,8 @@ export const TIMELINE_ACTIVITY_STANDARD_FIELD_IDS = {
   linkedRecordCachedName: '20202020-cfdb-4bef-bbce-a29f41230934',
   linkedRecordId: '20202020-2e0e-48c0-b445-ee6c1e61687d',
   linkedObjectMetadataId: '20202020-c595-449d-9f89-562758c9ee69',
+
+  unsortedItem: '20202020-f0c9-4e64-98c4-f898d8c22984',
 };
 
 export const FAVORITE_STANDARD_FIELD_IDS = {
@@ -218,18 +222,15 @@ export const FAVORITE_STANDARD_FIELD_IDS = {
   view: '20202020-5a93-4fa9-acce-e73481a0bbdf',
   custom: '20202020-855a-4bc8-9861-79deef37011f',
   favoriteFolder: '20202020-f658-4d12-8b4d-248356aa4bd9',
+
+  location: '20202020-cabf-4b4c-be63-dfe9aa7226f2',
+  unsortedItem: '20202020-611a-4f2a-b4aa-1f9f1d9bd635',
 };
 
 export const FAVORITE_FOLDER_STANDARD_FIELD_IDS = {
   position: '20202020-5278-4bde-8909-2cec74d43744',
   name: '20202020-82a3-4537-8ff0-dbce7eec35d6',
   favorites: '20202020-b5e3-4b42-8af2-03cd4fd2e4d2',
-};
-
-export const LOCATION_STANDARD_FIELD_IDS = {
-  position: '20202020-592f-4bcc-8330-b8ce7df5a14c',
-  name: '20202020-54df-4b71-9a0a-0ced8f91a8a7',
-  locationId: '20202020-9c45-4369-9997-12899b8881b5',
 };
 
 export const MESSAGE_CHANNEL_MESSAGE_ASSOCIATION_STANDARD_FIELD_IDS = {
@@ -308,6 +309,8 @@ export const NOTE_TARGET_STANDARD_FIELD_IDS = {
   company: 'c500fbc0-d6f2-4982-a959-5a755431696c',
   opportunity: '20202020-4e42-417a-a705-76581c9ade79',
   custom: '20202020-3d12-4579-94ee-7117c1bad492',
+
+  unsortedItem: '20202020-8561-4842-8902-2c2c7b5e957e',
 };
 
 export const OPPORTUNITY_STANDARD_FIELD_IDS = {
@@ -378,6 +381,8 @@ export const TASK_TARGET_STANDARD_FIELD_IDS = {
   company: '20202020-4703-4a4e-948c-487b0c60a92c',
   opportunity: '20202020-6cb2-4c01-a9a5-aca3dbc11d41',
   custom: '20202020-41c1-4c9a-8c75-be0971ef89af',
+
+  unsortedItem: '20202020-14fb-4345-a11d-296b890f3b41',
 };
 
 export const VIEW_FIELD_STANDARD_FIELD_IDS = {
@@ -532,6 +537,42 @@ export const CUSTOM_OBJECT_STANDARD_FIELD_IDS = {
   searchVector: '70e56537-18ef-4811-b1c7-0a444006b815',
 };
 
+export const LOCATION_STANDARD_FIELD_IDS = {
+  position: '20202020-592f-4bcc-8330-b8ce7df5a14c',
+  name: '20202020-54df-4b71-9a0a-0ced8f91a8a7',
+  createdBy: '20202020-e7a0-438c-8ef0-21c275a3c857',
+  activityTargets: '20202020-3d0b-4291-b94b-c5b1a3a74407',
+  noteTargets: '20202020-f514-41dc-b474-1393b813ec88',
+  taskTargets: '20202020-d678-4238-a485-94060c7fcece',
+  favorites: '20202020-754c-4d0e-bd01-747946ba091b',
+  attachments: '20202020-90c7-41ba-9b24-b8de5fc38e25',
+  timelineActivities: '20202020-01cd-4441-9fc9-2b40faaa641a',
+  searchVector: '20202020-481c-43a0-a7fa-5d4a9976b0d6',
+
+  locationId: '20202020-9c94-4c93-9f31-1b6c26d1cd55',
+  unsorted: '20202020-2015-49c9-bf5a-91255469e8c0',
+};
+
+export const UNSORTED_ITEM_STANDARD_FIELD_IDS = {
+  position: '20202020-3b3b-4b3b-8b3b-7f8d6a1d7d5c',
+  name: '20202020-67f7-4bd7-b722-f63374c73449',
+  createdBy: '20202020-39dc-464d-af2e-99594200c888',
+  activityTargets: '20202020-fc3b-43ef-bd2e-e0b52aded94e',
+  taskTargets: '20202020-e524-49ec-bf39-51e4dc867b25',
+  noteTargets: '20202020-4787-496c-9dde-5d1a18b54548',
+  favorites: '20202020-9d0a-4f50-906e-e513909e654c',
+  attachments: '20202020-c684-4bd3-8a8e-dcb671cee715',
+  timelineActivities: '20202020-4a40-468a-a616-dfdfd35704d6',
+  searchVector: '428a0da5-613f-4d02-b29d-9764ed2f3ca2',
+  location: '20202020-ab70-4841-8b41-06eca6e37181',
+  fullName: '20202020-6c58-4a5b-a124-10f489933acb',
+  email: '20202020-e55d-4f49-9090-7d002edfb5a8',
+  phoneNumber: '20202020-e6bd-4841-b421-572618ff1327',
+  dateOfBirth: '20202020-a3dc-4d7e-b95d-ee390b010459',
+  stage: '20202020-de93-4ece-a5d6-8ba3b2039097',
+  genter: '20202020-98a3-4d33-bb6e-25af1f0a1860',
+};
+
 export const STANDARD_OBJECT_FIELD_IDS = {
   activityTarget: ACTIVITY_TARGET_STANDARD_FIELD_IDS,
   activity: ACTIVITY_STANDARD_FIELD_IDS,
@@ -575,4 +616,5 @@ export const STANDARD_OBJECT_FIELD_IDS = {
   workflowVersion: WORKFLOW_VERSION_STANDARD_FIELD_IDS,
   workspaceMember: WORKSPACE_MEMBER_STANDARD_FIELD_IDS,
   location: LOCATION_STANDARD_FIELD_IDS,
+  unsortedItem: UNSORTED_ITEM_STANDARD_FIELD_IDS,
 };

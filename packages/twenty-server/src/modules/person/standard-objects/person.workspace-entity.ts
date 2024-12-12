@@ -63,6 +63,7 @@ export const SEARCH_FIELDS_FOR_PERSON: FieldTypeAndNameMetadata[] = [
   labelIdentifierStandardId: PERSON_STANDARD_FIELD_IDS.name,
   imageIdentifierStandardId: PERSON_STANDARD_FIELD_IDS.avatarUrl,
 })
+@WorkspaceIsSystem()
 export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceField({
     standardId: PERSON_STANDARD_FIELD_IDS.name,

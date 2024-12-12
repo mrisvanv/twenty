@@ -7,6 +7,7 @@ import { CalendarEventParticipantWorkspaceEntity } from 'src/modules/calendar/co
 import { CalendarEventWorkspaceEntity } from 'src/modules/calendar/common/standard-objects/calendar-event.workspace-entity';
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
 import { ConnectedAccountWorkspaceEntity } from 'src/modules/connected-account/standard-objects/connected-account.workspace-entity';
+import { UnsortedItemWorkspaceEntity } from 'src/modules/cs/leads/unsorted-item/standard-objects/unsortedItem.workspace-entry';
 import { LocationWorkspaceEntity } from 'src/modules/cs/location/standard-objects/location.workspace-entry';
 import { FavoriteFolderWorkspaceEntity } from 'src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity';
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
@@ -79,4 +80,5 @@ export const standardObjectMetadataDefinitions = [
   TaskWorkspaceEntity,
   TaskTargetWorkspaceEntity,
   LocationWorkspaceEntity,
+  UnsortedItemWorkspaceEntity,
 ];

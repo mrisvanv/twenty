@@ -39,4 +39,5 @@ export const STANDARD_OBJECT_ICONS = {
   workflowVersion: 'IconSettingsAutomation',
   workspaceMember: 'IconUserCircle',
   location: 'IconLocation',
+  unsortedItem: 'IconQuestionMark',
 };
