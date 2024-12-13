@@ -50,4 +50,10 @@ export const STANDARD_OBJECT_IDS = {
   workspaceMember: '20202020-3319-4234-a34c-82d5c0e881a6',
   location: '20202020-6be6-44df-b958-19df8164e486',
   unsortedItem: '20202020-6b6b-4b6b-8b6b-6b6b6b6b6b6b',
+  preventiveCareItem: '20202020-a09f-c1ec-3c0a-5707b063c87e',
+  restorativeDentistryItem: '20202020-6836-2f3e-7814-ea522072a800',
+  cosmeticDentistryItem: '20202020-a083-e85f-b51d-4554af60360f',
+  orthodonticsItem: '20202020-1739-5dff-decc-4dbe41fd3984',
+  emergencyCareItem: '20202020-078c-638c-860d-e425e42084de',
+  spam: '20202020-06fd-0ed2-8fbb-383fdcdd5e15',
 };

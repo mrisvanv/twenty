@@ -25,6 +25,12 @@ import {
   FieldTypeAndNameMetadata,
   getTsVectorColumnExpressionFromFields,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/utils/get-ts-vector-column-expression.util';
+import { CosmeticDentistryItemWorkspaceEntity } from 'src/modules/cs/leads/cosmetic-dentistry-item/standard-objects/cosmeticDentistryItem.workspace-entry';
+import { EmergencyCareItemWorkspaceEntity } from 'src/modules/cs/leads/emergency-care-item/standard-objects/emergencyCareItem.workspace-entry';
+import { OrthodonticsItemWorkspaceEntity } from 'src/modules/cs/leads/orthodontics-item/standard-objects/orthodonticsItem.workspace-entry';
+import { PreventiveCareItemWorkspaceEntity } from 'src/modules/cs/leads/preventive-care-item/standard-objects/preventiveCareItem.workspace-entry';
+import { RestorativeDentistryItemWorkspaceEntity } from 'src/modules/cs/leads/restorative-dentistry-item/standard-objects/restorativeDentistryItem.workspace-entry';
+import { SpamItemWorkspaceEntity } from 'src/modules/cs/leads/spam-item/standard-objects/spamItem.workspace-entry';
 import { UnsortedItemWorkspaceEntity } from 'src/modules/cs/leads/unsorted-item/standard-objects/unsortedItem.workspace-entry';
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 
@@ -88,7 +94,8 @@ export class LocationWorkspaceEntity extends BaseWorkspaceEntity {
   })
   createdBy: ActorMetadata;
 
-  // //Relations
+  //Relations
+  //   Unsorted
   @WorkspaceRelation({
     standardId: LOCATION_STANDARD_FIELD_IDS.unsorted,
     type: RelationMetadataType.ONE_TO_MANY,
@@ -100,6 +107,80 @@ export class LocationWorkspaceEntity extends BaseWorkspaceEntity {
     onDelete: RelationOnDeleteAction.SET_NULL,
   })
   unsorted: Relation<UnsortedItemWorkspaceEntity[]>;
+
+  // Preventive Care
+  @WorkspaceRelation({
+    standardId: LOCATION_STANDARD_FIELD_IDS.preventiveCare,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Preventive Care',
+    description: 'Preventive Care',
+    icon: STANDARD_OBJECT_ICONS.preventiveCareItem,
+    inverseSideTarget: () => PreventiveCareItemWorkspaceEntity,
+    inverseSideFieldKey: 'location',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  preventiveCare: Relation<PreventiveCareItemWorkspaceEntity[]>;
+
+  // Restorative Dentistry
+  @WorkspaceRelation({
+    standardId: LOCATION_STANDARD_FIELD_IDS.restorativeDentistry,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Restorative Dentistry',
+    description: 'Restorative Dentistry',
+    icon: STANDARD_OBJECT_ICONS.restorativeDentistryItem,
+    inverseSideTarget: () => RestorativeDentistryItemWorkspaceEntity,
+    inverseSideFieldKey: 'location',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  restorativeDentistry: Relation<RestorativeDentistryItemWorkspaceEntity[]>;
+  // Cosmetic Dentistry
+  @WorkspaceRelation({
+    standardId: LOCATION_STANDARD_FIELD_IDS.cosmeticDentistry,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Cosmetic Dentistry',
+    description: 'Cosmetic Dentistry',
+    icon: STANDARD_OBJECT_ICONS.cosmeticDentistryItem,
+    inverseSideTarget: () => CosmeticDentistryItemWorkspaceEntity,
+    inverseSideFieldKey: 'location',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  cosmeticDentistry: Relation<CosmeticDentistryItemWorkspaceEntity[]>;
+  // Orthodontics
+  @WorkspaceRelation({
+    standardId: LOCATION_STANDARD_FIELD_IDS.orthodontics,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Orthodontics',
+    description: 'Orthodontics',
+    icon: STANDARD_OBJECT_ICONS.orthodonticsItem,
+    inverseSideTarget: () => OrthodonticsItemWorkspaceEntity,
+    inverseSideFieldKey: 'location',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  orthodontics: Relation<OrthodonticsItemWorkspaceEntity[]>;
+  // Emergency Care
+  @WorkspaceRelation({
+    standardId: LOCATION_STANDARD_FIELD_IDS.emergencyCare,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Emergency Care',
+    description: 'Emergency Care',
+    icon: STANDARD_OBJECT_ICONS.emergencyCareItem,
+    inverseSideTarget: () => EmergencyCareItemWorkspaceEntity,
+    inverseSideFieldKey: 'location',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  emergencyCare: Relation<EmergencyCareItemWorkspaceEntity[]>;
+  // Spam
+  @WorkspaceRelation({
+    standardId: LOCATION_STANDARD_FIELD_IDS.spam,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Spam',
+    description: 'Spam',
+    icon: STANDARD_OBJECT_ICONS.spamItem,
+    inverseSideTarget: () => SpamItemWorkspaceEntity,
+    inverseSideFieldKey: 'location',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  spam: Relation<SpamItemWorkspaceEntity[]>;
 
   @WorkspaceRelation({
     standardId: LOCATION_STANDARD_FIELD_IDS.favorites,

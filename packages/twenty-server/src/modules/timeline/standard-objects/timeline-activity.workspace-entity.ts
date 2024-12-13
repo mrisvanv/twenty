@@ -18,6 +18,13 @@ import { TIMELINE_ACTIVITY_STANDARD_FIELD_IDS } from 'src/engine/workspace-manag
 import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-icons';
 import { STANDARD_OBJECT_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-ids';
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
+import { CosmeticDentistryItemWorkspaceEntity } from 'src/modules/cs/leads/cosmetic-dentistry-item/standard-objects/cosmeticDentistryItem.workspace-entry';
+import { EmergencyCareItemWorkspaceEntity } from 'src/modules/cs/leads/emergency-care-item/standard-objects/emergencyCareItem.workspace-entry';
+import { OrthodonticsItemWorkspaceEntity } from 'src/modules/cs/leads/orthodontics-item/standard-objects/orthodonticsItem.workspace-entry';
+import { PreventiveCareItemWorkspaceEntity } from 'src/modules/cs/leads/preventive-care-item/standard-objects/preventiveCareItem.workspace-entry';
+import { RestorativeDentistryItemWorkspaceEntity } from 'src/modules/cs/leads/restorative-dentistry-item/standard-objects/restorativeDentistryItem.workspace-entry';
+import { SpamItemWorkspaceEntity } from 'src/modules/cs/leads/spam-item/standard-objects/spamItem.workspace-entry';
+import { UnsortedItemWorkspaceEntity } from 'src/modules/cs/leads/unsorted-item/standard-objects/unsortedItem.workspace-entry';
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
 import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
@@ -273,12 +280,105 @@ export class TimelineActivityWorkspaceEntity extends BaseWorkspaceEntity {
     label: 'Unsorted Item',
     description: 'Unsorted Item',
     icon: STANDARD_OBJECT_ICONS.unsortedItem,
-    inverseSideTarget: () => CustomWorkspaceEntity,
+    inverseSideTarget: () => UnsortedItemWorkspaceEntity,
     inverseSideFieldKey: 'timelineActivities',
   })
   @WorkspaceIsNullable()
-  unsortedItem: Relation<CustomWorkspaceEntity> | null;
+  unsortedItem: Relation<UnsortedItemWorkspaceEntity> | null;
 
   @WorkspaceJoinColumn('unsortedItem')
   unsortedItemId: string | null;
+
+  // Preventive Care
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.preventiveCareItem,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Preventive Care Item',
+    description: 'Preventive Care Item',
+    icon: STANDARD_OBJECT_ICONS.preventiveCareItem,
+    inverseSideTarget: () => PreventiveCareItemWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+  })
+  @WorkspaceIsNullable()
+  preventiveCareItem: Relation<PreventiveCareItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('preventiveCareItem')
+  preventiveCareItemId: string | null;
+  // Restorative Dentistry
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.restorativeDentistryItem,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Restorative Dentistry Item',
+    description: 'Restorative Dentistry Item',
+    icon: STANDARD_OBJECT_ICONS.restorativeDentistryItem,
+    inverseSideTarget: () => RestorativeDentistryItemWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+  })
+  @WorkspaceIsNullable()
+  restorativeDentistryItem: Relation<RestorativeDentistryItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('restorativeDentistryItem')
+  restorativeDentistryItemId: string | null;
+
+  // Cosmetic Dentistry
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.cosmeticDentistryItem,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Cosmetic Dentistry Item',
+    description: 'Cosmetic Dentistry Item',
+    icon: STANDARD_OBJECT_ICONS.cosmeticDentistryItem,
+    inverseSideTarget: () => CosmeticDentistryItemWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+  })
+  @WorkspaceIsNullable()
+  cosmeticDentistryItem: Relation<CosmeticDentistryItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('cosmeticDentistryItem')
+  cosmeticDentistryItemId: string | null;
+  // Orthodontics
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.orthodonticsItem,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Orthodontics Item',
+    description: 'Orthodontics Item',
+    icon: STANDARD_OBJECT_ICONS.orthodonticsItem,
+    inverseSideTarget: () => OrthodonticsItemWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+  })
+  @WorkspaceIsNullable()
+  orthodonticsItem: Relation<OrthodonticsItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('orthodonticsItem')
+  orthodonticsItemId: string | null;
+  // Emergency Care
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.emergencyCareItem,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Emergency Care Item',
+    description: 'Emergency Care Item',
+    icon: STANDARD_OBJECT_ICONS.emergencyCareItem,
+    inverseSideTarget: () => EmergencyCareItemWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+  })
+  @WorkspaceIsNullable()
+  emergencyCareItem: Relation<EmergencyCareItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('emergencyCareItem')
+  emergencyCareItemId: string | null;
+
+  // Spam
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.spamItem,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Spam',
+    description: 'Spam',
+    icon: STANDARD_OBJECT_ICONS.spamItem,
+    inverseSideTarget: () => SpamItemWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+  })
+  @WorkspaceIsNullable()
+  spamItem: Relation<SpamItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('spamItem')
+  spamItemId: string | null;
 }

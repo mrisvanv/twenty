@@ -7,6 +7,12 @@ import { CalendarEventParticipantWorkspaceEntity } from 'src/modules/calendar/co
 import { CalendarEventWorkspaceEntity } from 'src/modules/calendar/common/standard-objects/calendar-event.workspace-entity';
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
 import { ConnectedAccountWorkspaceEntity } from 'src/modules/connected-account/standard-objects/connected-account.workspace-entity';
+import { CosmeticDentistryItemWorkspaceEntity } from 'src/modules/cs/leads/cosmetic-dentistry-item/standard-objects/cosmeticDentistryItem.workspace-entry';
+import { EmergencyCareItemWorkspaceEntity } from 'src/modules/cs/leads/emergency-care-item/standard-objects/emergencyCareItem.workspace-entry';
+import { OrthodonticsItemWorkspaceEntity } from 'src/modules/cs/leads/orthodontics-item/standard-objects/orthodonticsItem.workspace-entry';
+import { PreventiveCareItemWorkspaceEntity } from 'src/modules/cs/leads/preventive-care-item/standard-objects/preventiveCareItem.workspace-entry';
+import { RestorativeDentistryItemWorkspaceEntity } from 'src/modules/cs/leads/restorative-dentistry-item/standard-objects/restorativeDentistryItem.workspace-entry';
+import { SpamItemWorkspaceEntity } from 'src/modules/cs/leads/spam-item/standard-objects/spamItem.workspace-entry';
 import { UnsortedItemWorkspaceEntity } from 'src/modules/cs/leads/unsorted-item/standard-objects/unsortedItem.workspace-entry';
 import { LocationWorkspaceEntity } from 'src/modules/cs/location/standard-objects/location.workspace-entry';
 import { FavoriteFolderWorkspaceEntity } from 'src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity';
@@ -81,4 +87,10 @@ export const standardObjectMetadataDefinitions = [
   TaskTargetWorkspaceEntity,
   LocationWorkspaceEntity,
   UnsortedItemWorkspaceEntity,
+  PreventiveCareItemWorkspaceEntity,
+  RestorativeDentistryItemWorkspaceEntity,
+  CosmeticDentistryItemWorkspaceEntity,
+  OrthodonticsItemWorkspaceEntity,
+  EmergencyCareItemWorkspaceEntity,
+  SpamItemWorkspaceEntity,
 ];

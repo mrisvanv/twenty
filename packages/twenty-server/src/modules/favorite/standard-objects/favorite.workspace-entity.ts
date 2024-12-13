@@ -18,6 +18,12 @@ import { FAVORITE_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/worksp
 import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-icons';
 import { STANDARD_OBJECT_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-ids';
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
+import { CosmeticDentistryItemWorkspaceEntity } from 'src/modules/cs/leads/cosmetic-dentistry-item/standard-objects/cosmeticDentistryItem.workspace-entry';
+import { EmergencyCareItemWorkspaceEntity } from 'src/modules/cs/leads/emergency-care-item/standard-objects/emergencyCareItem.workspace-entry';
+import { OrthodonticsItemWorkspaceEntity } from 'src/modules/cs/leads/orthodontics-item/standard-objects/orthodonticsItem.workspace-entry';
+import { PreventiveCareItemWorkspaceEntity } from 'src/modules/cs/leads/preventive-care-item/standard-objects/preventiveCareItem.workspace-entry';
+import { RestorativeDentistryItemWorkspaceEntity } from 'src/modules/cs/leads/restorative-dentistry-item/standard-objects/restorativeDentistryItem.workspace-entry';
+import { SpamItemWorkspaceEntity } from 'src/modules/cs/leads/spam-item/standard-objects/spamItem.workspace-entry';
 import { UnsortedItemWorkspaceEntity } from 'src/modules/cs/leads/unsorted-item/standard-objects/unsortedItem.workspace-entry';
 import { LocationWorkspaceEntity } from 'src/modules/cs/location/standard-objects/location.workspace-entry';
 import { FavoriteFolderWorkspaceEntity } from 'src/modules/favorite-folder/standard-objects/favorite-folder.workspace-entity';
@@ -288,4 +294,99 @@ export class FavoriteWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceJoinColumn('unsortedItem')
   unsortedItemId: string;
+
+  // Preventive Care
+  @WorkspaceRelation({
+    standardId: FAVORITE_STANDARD_FIELD_IDS.preventiveCare,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Preventive Care',
+    description: 'Preventive Care',
+    icon: 'IconHeart',
+    inverseSideTarget: () => PreventiveCareItemWorkspaceEntity,
+    inverseSideFieldKey: 'favorites',
+  })
+  @WorkspaceIsNullable()
+  preventiveCareItem: Relation<PreventiveCareItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('preventiveCareItem')
+  preventiveCareItemId: string;
+
+  // Restorative Dentistry
+  @WorkspaceRelation({
+    standardId: FAVORITE_STANDARD_FIELD_IDS.restorativeDentistry,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Restorative Dentistry',
+    description: 'Restorative Dentistry',
+    icon: 'IconHeart',
+    inverseSideTarget: () => RestorativeDentistryItemWorkspaceEntity,
+    inverseSideFieldKey: 'favorites',
+  })
+  @WorkspaceIsNullable()
+  restorativeDentistryItem: Relation<RestorativeDentistryItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('restorativeDentistryItem')
+  restorativeDentistryItemId: string;
+
+  // Cosmetic Dentistry
+  @WorkspaceRelation({
+    standardId: FAVORITE_STANDARD_FIELD_IDS.cosmeticDentistry,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Cosmetic Dentistry',
+    description: 'Cosmetic Dentistry',
+    icon: 'IconHeart',
+    inverseSideTarget: () => CosmeticDentistryItemWorkspaceEntity,
+    inverseSideFieldKey: 'favorites',
+  })
+  @WorkspaceIsNullable()
+  cosmeticDentistryItem: Relation<CosmeticDentistryItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('cosmeticDentistryItem')
+  cosmeticDentistryItemId: string;
+
+  // Orthodontics
+  @WorkspaceRelation({
+    standardId: FAVORITE_STANDARD_FIELD_IDS.orthodontics,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Orthodontics',
+    description: 'Orthodontics',
+    icon: 'IconHeart',
+    inverseSideTarget: () => OrthodonticsItemWorkspaceEntity,
+    inverseSideFieldKey: 'favorites',
+  })
+  @WorkspaceIsNullable()
+  orthodonticsItem: Relation<OrthodonticsItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('orthodonticsItem')
+  orthodonticsItemId: string;
+  // Emergency Care
+  @WorkspaceRelation({
+    standardId: FAVORITE_STANDARD_FIELD_IDS.emergencyCare,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Emergency Care',
+    description: 'Emergency Care',
+    icon: 'IconHeart',
+    inverseSideTarget: () => EmergencyCareItemWorkspaceEntity,
+    inverseSideFieldKey: 'favorites',
+  })
+  @WorkspaceIsNullable()
+  emergencyCareItem: Relation<EmergencyCareItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('emergencyCareItem')
+  emergencyCareItemId: string;
+
+  // Spam
+  @WorkspaceRelation({
+    standardId: FAVORITE_STANDARD_FIELD_IDS.spam,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Spam',
+    description: 'Spam',
+    icon: 'IconHeart',
+    inverseSideTarget: () => SpamItemWorkspaceEntity,
+    inverseSideFieldKey: 'favorites',
+  })
+  @WorkspaceIsNullable()
+  spamItem: Relation<SpamItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('spamItem')
+  spamItemId: string;
 }
