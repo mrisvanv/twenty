@@ -31,7 +31,7 @@ export const unsortedView = (
       {
         fieldMetadataId:
           objectMetadataMap[STANDARD_OBJECT_IDS.unsortedItem].fields[
-            UNSORTED_ITEM_STANDARD_FIELD_IDS.stage
+            UNSORTED_ITEM_STANDARD_FIELD_IDS.fullName
           ],
         position: 2,
         isVisible: true,
@@ -40,18 +40,9 @@ export const unsortedView = (
       {
         fieldMetadataId:
           objectMetadataMap[STANDARD_OBJECT_IDS.unsortedItem].fields[
-            UNSORTED_ITEM_STANDARD_FIELD_IDS.dateOfBirth
+            UNSORTED_ITEM_STANDARD_FIELD_IDS.pointOfContact
           ],
         position: 3,
-        isVisible: true,
-        size: 150,
-      },
-      {
-        fieldMetadataId:
-          objectMetadataMap[STANDARD_OBJECT_IDS.unsortedItem].fields[
-            UNSORTED_ITEM_STANDARD_FIELD_IDS.email
-          ],
-        position: 4,
         isVisible: true,
         size: 150,
       },

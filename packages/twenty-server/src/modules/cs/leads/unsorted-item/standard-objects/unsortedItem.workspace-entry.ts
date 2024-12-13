@@ -31,17 +31,18 @@ import { AttachmentWorkspaceEntity } from 'src/modules/attachment/standard-objec
 import { LocationWorkspaceEntity } from 'src/modules/cs/location/standard-objects/location.workspace-entry';
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
+import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 
 const NAME_FIELD_NAME = 'name';
 const FULL_NAME_FIELD_NAME = 'fullName';
-const EMAIL = 'email';
+// const EMAIL = 'email';
 
 export const SEARCH_FIELDS_FOR_UNSORTED_ITEM: FieldTypeAndNameMetadata[] = [
   { name: NAME_FIELD_NAME, type: FieldMetadataType.TEXT },
   { name: FULL_NAME_FIELD_NAME, type: FieldMetadataType.FULL_NAME },
-  { name: EMAIL, type: FieldMetadataType.EMAILS },
+  //   { name: EMAIL, type: FieldMetadataType.EMAILS },
 ];
 
 @WorkspaceEntity({
@@ -85,15 +86,15 @@ export class UnsortedItemWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceIsNullable()
   fullName: string | null;
 
-  @WorkspaceField({
-    standardId: UNSORTED_ITEM_STANDARD_FIELD_IDS.phoneNumber,
-    type: FieldMetadataType.PHONES,
-    label: 'Phone Number',
-    description: 'The phone number',
-    icon: 'IconPhone',
-  })
-  @WorkspaceIsNullable()
-  phoneNumber: string | null;
+  //   @WorkspaceField({
+  //     standardId: UNSORTED_ITEM_STANDARD_FIELD_IDS.phoneNumber,
+  //     type: FieldMetadataType.PHONES,
+  //     label: 'Phone Number',
+  //     description: 'The phone number',
+  //     icon: 'IconPhone',
+  //   })
+  //   @WorkspaceIsNullable()
+  //   phoneNumber: string | null;
 
   @WorkspaceField({
     standardId: UNSORTED_ITEM_STANDARD_FIELD_IDS.dateOfBirth,
@@ -105,15 +106,15 @@ export class UnsortedItemWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceIsNullable()
   dateOfBirth: Date | null;
 
-  @WorkspaceField({
-    standardId: UNSORTED_ITEM_STANDARD_FIELD_IDS.email,
-    type: FieldMetadataType.EMAILS,
-    label: 'Email',
-    description: 'The email address',
-    icon: 'IconEmail',
-  })
-  @WorkspaceIsNullable()
-  email: string | null;
+  //   @WorkspaceField({
+  //     standardId: UNSORTED_ITEM_STANDARD_FIELD_IDS.email,
+  //     type: FieldMetadataType.EMAILS,
+  //     label: 'Email',
+  //     description: 'The email address',
+  //     icon: 'IconEmail',
+  //   })
+  //   @WorkspaceIsNullable()
+  //   email: string | null;
 
   @WorkspaceField({
     standardId: UNSORTED_ITEM_STANDARD_FIELD_IDS.stage,
@@ -167,6 +168,23 @@ export class UnsortedItemWorkspaceEntity extends BaseWorkspaceEntity {
     },
   })
   createdBy: ActorMetadata;
+
+  @WorkspaceRelation({
+    standardId: UNSORTED_ITEM_STANDARD_FIELD_IDS.pointOfContact,
+    type: RelationMetadataType.MANY_TO_ONE,
+    label: 'Point of Contact',
+    description: 'Unsorted item point of contact',
+    icon: 'IconUser',
+    inverseSideTarget: () => PersonWorkspaceEntity,
+    inverseSideFieldKey: 'pointOfContactForUnsortedItem',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  pointOfContact: Relation<PersonWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('pointOfContact')
+  pointOfContactId: string | null;
+
   @WorkspaceRelation({
     standardId: UNSORTED_ITEM_STANDARD_FIELD_IDS.favorites,
     type: RelationMetadataType.ONE_TO_MANY,
@@ -241,6 +259,17 @@ export class UnsortedItemWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceIsSystem()
   @WorkspaceFieldIndex({ indexType: IndexType.GIN })
   [SEARCH_VECTOR_FIELD.name]: any;
+
+  @WorkspaceField({
+    standardId: UNSORTED_ITEM_STANDARD_FIELD_IDS.patientId,
+    type: FieldMetadataType.TEXT,
+    label: 'Patient ID',
+    description: 'Patient ID',
+    icon: 'IconUser',
+  })
+  @WorkspaceIsNullable()
+  @WorkspaceIsSystem()
+  patientId: string | null;
 
   //   //Relation
   @WorkspaceRelation({

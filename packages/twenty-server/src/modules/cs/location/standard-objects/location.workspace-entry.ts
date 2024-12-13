@@ -72,6 +72,7 @@ export class LocationWorkspaceEntity extends BaseWorkspaceEntity {
     icon: 'IconNumber9',
   })
   @WorkspaceIsNullable()
+  @WorkspaceIsSystem()
   locationId: number | null;
 
   @WorkspaceField({

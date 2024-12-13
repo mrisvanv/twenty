@@ -358,6 +358,8 @@ export const PERSON_STANDARD_FIELD_IDS = {
   calendarEventParticipants: '20202020-52ee-45e9-a702-b64b3753e3a9',
   timelineActivities: '20202020-a43e-4873-9c23-e522de906ce5',
   searchVector: '57d1d7ad-fa10-44fc-82f3-ad0959ec2534',
+
+  pointOfContactForUnsortedItems: '20202020-8899-4c5f-86c6-a9d32da8745e',
 };
 
 export const TASK_STANDARD_FIELD_IDS = {
@@ -571,6 +573,8 @@ export const UNSORTED_ITEM_STANDARD_FIELD_IDS = {
   dateOfBirth: '20202020-a3dc-4d7e-b95d-ee390b010459',
   stage: '20202020-de93-4ece-a5d6-8ba3b2039097',
   genter: '20202020-98a3-4d33-bb6e-25af1f0a1860',
+  pointOfContact: '20202020-9535-49c3-8726-c785fdee78bc',
+  patientId: '20202020-9cd7-4e11-a30d-9008ed0df957',
 };
 
 export const STANDARD_OBJECT_FIELD_IDS = {
