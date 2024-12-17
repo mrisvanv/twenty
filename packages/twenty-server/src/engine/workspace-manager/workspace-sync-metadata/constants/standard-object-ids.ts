@@ -55,5 +55,5 @@ export const STANDARD_OBJECT_IDS = {
   cosmeticDentistryItem: '20202020-a083-e85f-b51d-4554af60360f',
   orthodonticsItem: '20202020-1739-5dff-decc-4dbe41fd3984',
   emergencyCareItem: '20202020-078c-638c-860d-e425e42084de',
-  spam: '20202020-06fd-0ed2-8fbb-383fdcdd5e15',
+  spamItem: '20202020-06fd-0ed2-8fbb-383fdcdd5e15',
 };

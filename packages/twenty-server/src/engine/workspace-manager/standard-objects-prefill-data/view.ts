@@ -3,6 +3,13 @@ import { v4 } from 'uuid';
 
 import { ObjectMetadataEntity } from 'src/engine/metadata-modules/object-metadata/object-metadata.entity';
 import { companiesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/companies-all.view';
+import { cosmeticDentistryView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/leads/cosmetic-dentistry.view';
+import { emergencyCareView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/leads/emergency-care.view';
+import { orthodonticsView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/leads/orthodontics.view';
+import { preventiveCareView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/leads/preventive-care.view';
+import { restorativeDentistryView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/leads/restorative-dentistry.view';
+import { spamView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/leads/spam.view';
+import { unsortedView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/leads/unsorted.view';
 import { locationsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/locations-all.view';
 import { notesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/notes-all.view';
 import { opportunitiesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/opportunities-all.view';
@@ -10,7 +17,6 @@ import { opportunitiesByStageView } from 'src/engine/workspace-manager/standard-
 import { peopleAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/people-all.view';
 import { tasksAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/tasks-all.view';
 import { tasksByStatusView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/tasks-by-status.view';
-import { unsortedView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/unsorted.view';
 import { workflowRunsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/workflow-runs-all.view';
 import { workflowVersionsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/workflow-versions-all.view';
 import { workflowsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/workflows-all.view';
@@ -31,6 +37,12 @@ export const viewPrefillData = async (
     tasksByStatusView(objectMetadataMap),
     locationsAllView(objectMetadataMap),
     unsortedView(objectMetadataMap),
+    preventiveCareView(objectMetadataMap),
+    restorativeDentistryView(objectMetadataMap),
+    cosmeticDentistryView(objectMetadataMap),
+    orthodonticsView(objectMetadataMap),
+    emergencyCareView(objectMetadataMap),
+    spamView(objectMetadataMap),
     ...(isWorkflowEnabled
       ? [
           workflowsAllView(objectMetadataMap),

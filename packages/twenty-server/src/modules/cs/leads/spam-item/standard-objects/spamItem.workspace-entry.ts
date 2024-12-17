@@ -44,7 +44,7 @@ export const SEARCH_FIELDS_FOR_SPAM: FieldTypeAndNameMetadata[] = [
 ];
 
 @WorkspaceEntity({
-  standardId: STANDARD_OBJECT_IDS.spam,
+  standardId: STANDARD_OBJECT_IDS.spamItem,
   namePlural: 'spam',
   labelSingular: 'Spam Item',
   labelPlural: 'Spam',

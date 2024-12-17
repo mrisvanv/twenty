@@ -33,15 +33,56 @@ export const MainNavigationDrawerItems = () => {
   const setNavigationDrawerExpandedMemorized = useSetRecoilState(
     navigationDrawerExpandedMemorizedState,
   );
-  const LEADS = [
-    'unsortedItem',
-    'preventiveCareItem',
-    'restorativeItem',
-    'cosmeticItems',
-    'orthodonticsItem',
-    'emergencyCareItem',
-    'spamItem',
+  const LEADS: {
+    id: string;
+    name: string;
+    nameSingular: string;
+    position: number;
+  }[] = [
+    {
+      id: 'unsorted',
+      name: 'Unsorted',
+      nameSingular: 'unsortedItem',
+      position: 0,
+    },
+    {
+      id: 'preventiveCare',
+      name: 'Preventive Care',
+      nameSingular: 'preventiveCareItem',
+      position: 1,
+    },
+    {
+      id: 'restorative',
+      name: 'Restorative',
+      nameSingular: 'restorativeDentistryItem',
+      position: 2,
+    },
+    {
+      id: 'cosmetic',
+      name: 'Cosmetic',
+      nameSingular: 'cosmeticDentistryItem',
+      position: 3,
+    },
+    {
+      id: 'orthodontics',
+      name: 'Orthodontics',
+      nameSingular: 'orthodonticsItem',
+      position: 4,
+    },
+    {
+      id: 'emergency',
+      name: 'Emergency Care',
+      nameSingular: 'emergencyCareItem',
+      position: 5,
+    },
+    {
+      id: 'spam',
+      name: 'Spam',
+      nameSingular: 'spamItem',
+      position: 6,
+    },
   ];
+
   return (
     <>
       {!isMobile && (

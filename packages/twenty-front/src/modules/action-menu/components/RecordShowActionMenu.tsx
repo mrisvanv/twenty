@@ -41,12 +41,12 @@ export const RecordShowActionMenu = ({
     {
       id: 'restorative',
       name: 'Restorative',
-      nameSingular: 'restorativeItem',
+      nameSingular: 'restorativeDentistryItem',
     },
     {
       id: 'cosmetic',
       name: 'Cosmetic',
-      nameSingular: 'cosmeticItems',
+      nameSingular: 'cosmeticDentistryItem',
     },
     {
       id: 'orthodontics',
