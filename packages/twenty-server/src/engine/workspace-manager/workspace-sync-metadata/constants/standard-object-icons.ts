@@ -38,4 +38,12 @@ export const STANDARD_OBJECT_ICONS = {
   workflowRun: 'IconSettingsAutomation',
   workflowVersion: 'IconSettingsAutomation',
   workspaceMember: 'IconUserCircle',
+  location: 'IconLocation',
+  unsortedItem: 'IconMoodSmileBeam',
+  preventiveCareItem: 'IconTelescope',
+  restorativeDentistryItem: 'IconTool',
+  cosmeticDentistryItem: 'IconStars',
+  orthodonticsItem: 'IconBone',
+  emergencyCareItem: 'IconEmergencyBed',
+  spamItem: 'IconHelpTriangle',
 };

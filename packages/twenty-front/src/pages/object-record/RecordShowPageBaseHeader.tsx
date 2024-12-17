@@ -3,10 +3,13 @@ import { PageFavoriteFoldersDropdown } from '@/favorites/components/PageFavorite
 import { FAVORITE_FOLDER_PICKER_DROPDOWN_ID } from '@/favorites/favorite-folder-picker/constants/FavoriteFolderPickerDropdownId';
 import { ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import { ObjectRecord } from '@/object-record/types/ObjectRecord';
+import { ADD_PATIENT_PICKER_DROPDOWN_ID } from '@/patients/add-patient-picker/constants/AddPatientPickerDropdownId';
+import { PageAddPatientDropdown } from '@/patients/components/PageAddPatientDropdown';
+import { PageHeaderOpenCommandMenuButton } from '@/ui/layout/page-header/components/PageHeaderOpenCommandMenuButton';
 import { ShowPageAddButton } from '@/ui/layout/show-page/components/ShowPageAddButton';
-import { ShowPageMoreButton } from '@/ui/layout/show-page/components/ShowPageMoreButton';
 import { ShowPageMoveButton } from '@/ui/layout/show-page/components/ShowPageMoveButton';
 import { useIsFeatureEnabled } from '@/workspace/hooks/useIsFeatureEnabled';
+import { Button, IconUser } from 'twenty-ui';
 
 type RecordShowPageBaseHeaderProps = {
   isFavorite: boolean;
@@ -31,6 +34,7 @@ export const RecordShowPageBaseHeader = ({
 
   const linesNameSingular = lines.map((line) => line.nameSingular);
 
+  const patientId = record?.patientId;
   return (
     <>
       {isFavoriteFolderEnabled ? (
@@ -55,14 +59,37 @@ export const RecordShowPageBaseHeader = ({
         }}
       />
       {linesNameSingular.includes(objectNameSingular) && (
-        <ShowPageMoveButton
-          key="move"
-          recordId={record?.id ?? '0'}
-          objectNameSingular={objectNameSingular}
-          lines={lines}
-        />
+        <>
+          <ShowPageMoveButton
+            key="move-lead"
+            recordId={record?.id ?? '0'}
+            objectNameSingular={objectNameSingular}
+            lines={lines}
+          />
+          {patientId === undefined || patientId === null || patientId === '' ? (
+            <PageAddPatientDropdown
+              key={ADD_PATIENT_PICKER_DROPDOWN_ID}
+              dropdownId={ADD_PATIENT_PICKER_DROPDOWN_ID}
+              record={record}
+              objectNameSingular={objectNameSingular}
+            />
+          ) : (
+            <Button
+              key="view-patient"
+              title="View Patient"
+              variant="secondary"
+              Icon={IconUser}
+              onClick={() => {
+                window.open(
+                  `https://celebration.qa1.carestackqa.com/#/patient/${patientId}/patient-overview`,
+                  '_blank',
+                );
+              }}
+            />
+          )}
+        </>
       )}
-      <ShowPageMoreButton key="more" />
+      <PageHeaderOpenCommandMenuButton key="more" />
     </>
   );
 };

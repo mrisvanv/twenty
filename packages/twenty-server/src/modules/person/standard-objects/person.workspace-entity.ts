@@ -35,6 +35,13 @@ import {
 import { AttachmentWorkspaceEntity } from 'src/modules/attachment/standard-objects/attachment.workspace-entity';
 import { CalendarEventParticipantWorkspaceEntity } from 'src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity';
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
+import { CosmeticDentistryItemWorkspaceEntity } from 'src/modules/cs/leads/cosmetic-dentistry-item/standard-objects/cosmeticDentistryItem.workspace-entry';
+import { EmergencyCareItemWorkspaceEntity } from 'src/modules/cs/leads/emergency-care-item/standard-objects/emergencyCareItem.workspace-entry';
+import { OrthodonticsItemWorkspaceEntity } from 'src/modules/cs/leads/orthodontics-item/standard-objects/orthodonticsItem.workspace-entry';
+import { PreventiveCareItemWorkspaceEntity } from 'src/modules/cs/leads/preventive-care-item/standard-objects/preventiveCareItem.workspace-entry';
+import { RestorativeDentistryItemWorkspaceEntity } from 'src/modules/cs/leads/restorative-dentistry-item/standard-objects/restorativeDentistryItem.workspace-entry';
+import { SpamItemWorkspaceEntity } from 'src/modules/cs/leads/spam-item/standard-objects/spamItem.workspace-entry';
+import { UnsortedItemWorkspaceEntity } from 'src/modules/cs/leads/unsorted-item/standard-objects/unsortedItem.workspace-entry';
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { MessageParticipantWorkspaceEntity } from 'src/modules/messaging/common/standard-objects/message-participant.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
@@ -203,6 +210,106 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     onDelete: RelationOnDeleteAction.SET_NULL,
   })
   pointOfContactForOpportunities: Relation<OpportunityWorkspaceEntity[]>;
+
+  //Unsorted
+  @WorkspaceRelation({
+    standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForUnsortedItem,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Linked Unsorted Items',
+    description:
+      'List of unsorted items for which that person is the point of contact',
+    inverseSideTarget: () => UnsortedItemWorkspaceEntity,
+    inverseSideFieldKey: 'pointOfContact',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  pointOfContactForUnsortedItem: Relation<UnsortedItemWorkspaceEntity[]>;
+
+  // Preventive Care
+  @WorkspaceRelation({
+    standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForPreventiveCareItem,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Linked Preventive Care Items',
+    description:
+      'List of preventive care items for which that person is the point of contact',
+    inverseSideTarget: () => PreventiveCareItemWorkspaceEntity,
+    inverseSideFieldKey: 'pointOfContact',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  pointOfContactForPreventiveCareItem: Relation<
+    PreventiveCareItemWorkspaceEntity[]
+  >;
+
+  //   Restorative Dentistry
+  @WorkspaceRelation({
+    standardId:
+      PERSON_STANDARD_FIELD_IDS.pointOfContactForRestorativeDentistryItem,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Linked Restorative Dentistry Items',
+    description:
+      'List of restorative dentistry items for which that person is the point of contact',
+    inverseSideTarget: () => RestorativeDentistryItemWorkspaceEntity,
+    inverseSideFieldKey: 'pointOfContact',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  pointOfContactForRestorativeDentistryItem: Relation<
+    RestorativeDentistryItemWorkspaceEntity[]
+  >;
+  //   Cosmetic Dentistry
+  @WorkspaceRelation({
+    standardId:
+      PERSON_STANDARD_FIELD_IDS.pointOfContactForCosmeticDentistryItem,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Linked Cosmetic Dentistry Items',
+    description:
+      'List of cosmetic dentistry items for which that person is the point of contact',
+    inverseSideTarget: () => CosmeticDentistryItemWorkspaceEntity,
+    inverseSideFieldKey: 'pointOfContact',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  pointOfContactForCosmeticDentistryItem: Relation<
+    CosmeticDentistryItemWorkspaceEntity[]
+  >;
+
+  // Orthodontics
+  @WorkspaceRelation({
+    standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForOrthodonticsItem,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Linked Orthodontics Items',
+    description:
+      'List of orthodontics items for which that person is the point of contact',
+    inverseSideTarget: () => OrthodonticsItemWorkspaceEntity,
+    inverseSideFieldKey: 'pointOfContact',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  pointOfContactForOrthodonticsItem: Relation<
+    OrthodonticsItemWorkspaceEntity[]
+  >;
+  // Emergency Care
+  @WorkspaceRelation({
+    standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForEmergencyCareItem,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Linked Emergency Care Items',
+    description:
+      'List of emergency care items for which that person is the point of contact',
+    inverseSideTarget: () => EmergencyCareItemWorkspaceEntity,
+    inverseSideFieldKey: 'pointOfContact',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  pointOfContactForEmergencyCareItem: Relation<
+    EmergencyCareItemWorkspaceEntity[]
+  >;
+  // Spam
+  @WorkspaceRelation({
+    standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForSpamItem,
+    type: RelationMetadataType.ONE_TO_MANY,
+    label: 'Linked Spam Items',
+    description:
+      'List of spam items for which that person is the point of contact',
+    inverseSideTarget: () => SpamItemWorkspaceEntity,
+    inverseSideFieldKey: 'pointOfContact',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  pointOfContactForSpamItem: Relation<SpamItemWorkspaceEntity[]>;
 
   @WorkspaceRelation({
     standardId: PERSON_STANDARD_FIELD_IDS.taskTargets,

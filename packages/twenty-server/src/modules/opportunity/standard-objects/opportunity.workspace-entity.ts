@@ -54,6 +54,7 @@ export const SEARCH_FIELDS_FOR_OPPORTUNITY: FieldTypeAndNameMetadata[] = [
   labelIdentifierStandardId: OPPORTUNITY_STANDARD_FIELD_IDS.name,
 })
 @WorkspaceIsNotAuditLogged()
+@WorkspaceIsSystem()
 export class OpportunityWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceField({
     standardId: OPPORTUNITY_STANDARD_FIELD_IDS.name,

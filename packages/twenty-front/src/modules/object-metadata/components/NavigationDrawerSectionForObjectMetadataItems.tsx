@@ -15,8 +15,8 @@ const ORDERED_STANDARD_OBJECTS = [
   // 'note',
   'unsortedItem',
   'preventiveCareItem',
-  'restorativeItem',
-  'cosmeticItems',
+  'restorativeDentistryItem',
+  'cosmeticDentistryItem',
   'orthodonticsItem',
   'emergencyCareItem',
   'spamItem',
@@ -69,6 +69,15 @@ export const NavigationDrawerSectionForObjectMetadataItems = ({
         ? 1
         : -1;
     });
+
+  console.log(
+    'sortedStandardObjectMetadataItems',
+    sortedStandardObjectMetadataItems,
+  );
+  console.log(
+    'sortedCustomObjectMetadataItems',
+    sortedCustomObjectMetadataItems,
+  );
 
   const objectMetadataItemsForNavigationItems = [
     ...sortedStandardObjectMetadataItems,

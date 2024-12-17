@@ -47,6 +47,14 @@ export const ATTACHMENT_STANDARD_FIELD_IDS = {
   company: '20202020-ceab-4a28-b546-73b06b4c08d5',
   opportunity: '20202020-7374-499d-bea3-9354890755b5',
   custom: '20202020-302d-43b3-9aea-aa4f89282a9f',
+
+  unsortedItem: '20202020-b7e7-43e6-85a4-08c5bc6f4f8f',
+  preventiveCareItem: '20202020-e281-ca61-5ae4-9e1c3d850c0a',
+  restorativeDentistryItem: '20202020-41ec-24cc-487f-f3947403cb3a',
+  cosmeticDentistryItem: '20202020-bd11-c3d4-b3f8-de9fa5d2e7bf',
+  orthodonticsItem: '20202020-f69e-d8fc-7705-11204dd0931d',
+  emergencyCareItem: '20202020-6d47-3537-1345-a137f6ed0dea',
+  spamItem: '20202020-7230-74d2-e20b-002d9a32db1c',
 };
 
 export const BASE_OBJECT_STANDARD_FIELD_IDS = {
@@ -202,6 +210,14 @@ export const TIMELINE_ACTIVITY_STANDARD_FIELD_IDS = {
   linkedRecordCachedName: '20202020-cfdb-4bef-bbce-a29f41230934',
   linkedRecordId: '20202020-2e0e-48c0-b445-ee6c1e61687d',
   linkedObjectMetadataId: '20202020-c595-449d-9f89-562758c9ee69',
+
+  unsortedItem: '20202020-f0c9-4e64-98c4-f898d8c22984',
+  preventiveCareItem: '20202020-5e3a-fc90-e64d-4fe0a2f612ff',
+  restorativeDentistryItem: '20202020-2e7a-963a-a4cb-2ffc94ebfa94',
+  cosmeticDentistryItem: '20202020-135a-4cfd-2ee8-4719938d011e',
+  orthodonticsItem: '20202020-4495-1198-feb8-5ba7fe61cf4c',
+  emergencyCareItem: '20202020-c30c-2f21-123b-67e1858b7d65',
+  spamItem: '20202020-b90f-3ea7-ed36-a5b69a44e24d',
 };
 
 export const FAVORITE_STANDARD_FIELD_IDS = {
@@ -218,6 +234,15 @@ export const FAVORITE_STANDARD_FIELD_IDS = {
   view: '20202020-5a93-4fa9-acce-e73481a0bbdf',
   custom: '20202020-855a-4bc8-9861-79deef37011f',
   favoriteFolder: '20202020-f658-4d12-8b4d-248356aa4bd9',
+
+  location: '20202020-cabf-4b4c-be63-dfe9aa7226f2',
+  unsortedItem: '20202020-611a-4f2a-b4aa-1f9f1d9bd635',
+  preventiveCare: '20202020-eeb3-85b5-ae21-cd4a3a50d413',
+  restorativeDentistry: '20202020-af2e-5543-f83a-5ae226d94d32',
+  cosmeticDentistry: '20202020-fce4-70c0-b540-04999fbd5ea4',
+  orthodontics: '20202020-3e7a-a03a-50b7-aa7f6630a06d',
+  emergencyCare: '20202020-88e3-b467-3056-66d3c7f27b4e',
+  spam: '20202020-2e2f-ad30-a0e6-1661b9614a90',
 };
 
 export const FAVORITE_FOLDER_STANDARD_FIELD_IDS = {
@@ -302,6 +327,14 @@ export const NOTE_TARGET_STANDARD_FIELD_IDS = {
   company: 'c500fbc0-d6f2-4982-a959-5a755431696c',
   opportunity: '20202020-4e42-417a-a705-76581c9ade79',
   custom: '20202020-3d12-4579-94ee-7117c1bad492',
+
+  unsortedItem: '20202020-8561-4842-8902-2c2c7b5e957e',
+  preventiveCareItem: '20202020-87e7-d1e8-bc87-5e296c4d9998',
+  restorativeDentistryItem: '20202020-2c8c-1de9-ba5a-501b9b79e6aa',
+  cosmeticDentistryItem: '20202020-c4aa-00e8-4a9f-11f6c13c52b5',
+  orthodonticsItem: '20202020-be8c-8fd7-8078-03f21ca7cea7',
+  emergencyCareItem: '20202020-7a74-4abb-aeba-ac17aaa3f88c',
+  spamItem: '20202020-9525-b268-f331-70f30e94ac98',
 };
 
 export const OPPORTUNITY_STANDARD_FIELD_IDS = {
@@ -349,6 +382,16 @@ export const PERSON_STANDARD_FIELD_IDS = {
   calendarEventParticipants: '20202020-52ee-45e9-a702-b64b3753e3a9',
   timelineActivities: '20202020-a43e-4873-9c23-e522de906ce5',
   searchVector: '57d1d7ad-fa10-44fc-82f3-ad0959ec2534',
+
+  pointOfContactForUnsortedItem: '20202020-8899-4c5f-86c6-a9d32da8745e',
+  pointOfContactForPreventiveCareItem: '20202020-2de8-46c0-f536-24afb07e7183',
+  pointOfContactForRestorativeDentistryItem:
+    '20202020-93f2-1adc-edfe-70af64b81518',
+  pointOfContactForCosmeticDentistryItem:
+    '20202020-a490-b2c2-a3b3-594ded784f32',
+  pointOfContactForOrthodonticsItem: '20202020-f0e6-f684-9d5d-9f76d2d3a4f5',
+  pointOfContactForEmergencyCareItem: '20202020-a979-d665-5d84-a4bb6d71073b',
+  pointOfContactForSpamItem: '20202020-d366-b72a-8bf8-11eecb5d784a',
 };
 
 export const TASK_STANDARD_FIELD_IDS = {
@@ -372,6 +415,14 @@ export const TASK_TARGET_STANDARD_FIELD_IDS = {
   company: '20202020-4703-4a4e-948c-487b0c60a92c',
   opportunity: '20202020-6cb2-4c01-a9a5-aca3dbc11d41',
   custom: '20202020-41c1-4c9a-8c75-be0971ef89af',
+
+  unsortedItem: '20202020-14fb-4345-a11d-296b890f3b41',
+  preventiveCareItem: '20202020-fb8c-6acd-e9e0-4990747c55ac',
+  restorativeDentistryItem: '20202020-dc25-86c7-d023-13eef5e97063',
+  cosmeticDentistryItem: '20202020-781b-4fb3-10d5-d27af5de8b79',
+  orthodonticsItem: '20202020-8427-2dcf-fcff-a25893a87258',
+  emergencyCareItem: '20202020-2e45-9ceb-9533-17ed09c6bcfd',
+  spamItem: '20202020-6974-5aaa-991a-c488842133e7',
 };
 
 export const VIEW_FIELD_STANDARD_FIELD_IDS = {
@@ -380,6 +431,7 @@ export const VIEW_FIELD_STANDARD_FIELD_IDS = {
   size: '20202020-6fab-4bd0-ae72-20f3ee39d581',
   position: '20202020-19e5-4e4c-8c15-3a96d1fd0650',
   view: '20202020-e8da-4521-afab-d6d231f9fa18',
+  aggregateOperation: '20202020-2cd7-4f94-ae83-4a14f5731a04',
 };
 
 export const VIEW_GROUP_STANDARD_FIELD_IDS = {
@@ -420,6 +472,9 @@ export const VIEW_STANDARD_FIELD_IDS = {
   key: '20202020-298e-49fa-9f4a-7b416b110443',
   icon: '20202020-1f08-4fd9-929b-cbc07f317166',
   kanbanFieldMetadataId: '20202020-d09b-4f65-ac42-06a2f20ba0e8',
+  kanbanAggregateOperation: '20202020-8da2-45de-a731-61bed84b17a8',
+  kanbanAggregateOperationFieldMetadataId:
+    '20202020-b1b3-4bf3-85e4-dc7d58aa9b02',
   position: '20202020-e9db-4303-b271-e8250c450172',
   isCompact: '20202020-674e-4314-994d-05754ea7b22b',
   viewFields: '20202020-542b-4bdc-b177-b63175d48edf',
@@ -522,6 +577,182 @@ export const CUSTOM_OBJECT_STANDARD_FIELD_IDS = {
   searchVector: '70e56537-18ef-4811-b1c7-0a444006b815',
 };
 
+export const LOCATION_STANDARD_FIELD_IDS = {
+  position: '20202020-592f-4bcc-8330-b8ce7df5a14c',
+  name: '20202020-54df-4b71-9a0a-0ced8f91a8a7',
+  createdBy: '20202020-e7a0-438c-8ef0-21c275a3c857',
+  activityTargets: '20202020-3d0b-4291-b94b-c5b1a3a74407',
+  noteTargets: '20202020-f514-41dc-b474-1393b813ec88',
+  taskTargets: '20202020-d678-4238-a485-94060c7fcece',
+  favorites: '20202020-754c-4d0e-bd01-747946ba091b',
+  attachments: '20202020-90c7-41ba-9b24-b8de5fc38e25',
+  timelineActivities: '20202020-01cd-4441-9fc9-2b40faaa641a',
+  searchVector: '20202020-481c-43a0-a7fa-5d4a9976b0d6',
+
+  locationId: '20202020-9c94-4c93-9f31-1b6c26d1cd55',
+  unsorted: '20202020-2015-49c9-bf5a-91255469e8c0',
+  preventiveCare: '20202020-4356-6d4c-bc8c-29bddb522852',
+  restorativeDentistry: '20202020-545f-44fc-1bd0-e11cea9413c8',
+  cosmeticDentistry: '20202020-b94f-284c-4532-4368dafc9cda',
+  orthodontics: '20202020-147a-2d76-325c-e055c09f3bed',
+  emergencyCare: '20202020-94fd-a658-d7de-79189c7d2fdb',
+  spam: '20202020-2a75-be2c-54a8-33bc2a75da7e',
+};
+
+export const UNSORTED_ITEM_STANDARD_FIELD_IDS = {
+  position: '20202020-3b3b-4b3b-8b3b-7f8d6a1d7d5c',
+  name: '20202020-67f7-4bd7-b722-f63374c73449',
+  createdBy: '20202020-39dc-464d-af2e-99594200c888',
+  activityTargets: '20202020-fc3b-43ef-bd2e-e0b52aded94e',
+  taskTargets: '20202020-e524-49ec-bf39-51e4dc867b25',
+  noteTargets: '20202020-4787-496c-9dde-5d1a18b54548',
+  favorites: '20202020-9d0a-4f50-906e-e513909e654c',
+  attachments: '20202020-c684-4bd3-8a8e-dcb671cee715',
+  timelineActivities: '20202020-4a40-468a-a616-dfdfd35704d6',
+  searchVector: '428a0da5-613f-4d02-b29d-9764ed2f3ca2',
+  location: '20202020-ab70-4841-8b41-06eca6e37181',
+  fullName: '20202020-6c58-4a5b-a124-10f489933acb',
+  email: '20202020-e55d-4f49-9090-7d002edfb5a8',
+  phoneNumber: '20202020-e6bd-4841-b421-572618ff1327',
+  dateOfBirth: '20202020-a3dc-4d7e-b95d-ee390b010459',
+  stage: '20202020-de93-4ece-a5d6-8ba3b2039097',
+  genter: '20202020-98a3-4d33-bb6e-25af1f0a1860',
+  pointOfContact: '20202020-9535-49c3-8726-c785fdee78bc',
+  patientId: '20202020-9cd7-4e11-a30d-9008ed0df957',
+};
+
+export const PREVENTIVE_CARE_ITEM_STANDARD_FIELD_IDS = {
+  position: '20202020-a1b2-c3d4-e5f6-7890abcdef01',
+  name: '20202020-1a2b-3c4d-5e6f-89abcdef0123',
+  createdBy: '20202020-b2c3-d4e5-f6a7-890abcdef456',
+  activityTargets: '20202020-c3d4-e5f6-a7b8-90abcdef789a',
+  taskTargets: '20202020-d4e5-f6a7-b8c9-0abcdef01234',
+  noteTargets: '20202020-e5f6-a7b8-c9d0-abcdef567890',
+  favorites: '20202020-f6a7-b8c9-d0e1-bcdef0123456',
+  attachments: '20202020-a7b8-c9d0-e1f2-cdef89abcdef',
+  timelineActivities: '20202020-b8c9-d0e1-f2a3-def0123456ab',
+  searchVector: '20202020-5643-6ba6-cead-eefe4410c2ff',
+  location: '20202020-a3b4-4c5d-8e9f-1d2e3f4a5b6c',
+  fullName: '20202020-b2c3-4d5e-9f0a-2e3f4a5b6c7d',
+  email: '20202020-c3d4-4e6f-a0b1-3f4a5b6c7d8e',
+  phoneNumber: '20202020-d4e5-4f7a-b1c2-4a5b6c7d8e9f',
+  dateOfBirth: '20202020-e5f6-4a8b-c2d3-5b6c7d8e9f0a',
+  stage: '20202020-f6a7-4b9c-d3e4-6c7d8e9f0a1b',
+  genter: '20202020-a7b8-4c0d-e4f5-7d8e9f0a1b2c',
+  pointOfContact: '20202020-b8c9-4d1e-f5a6-8e9f0a1b2c3d',
+  patientId: '20202020-c9d0-4e2f-a6b7-9f0a1b2c3d4e',
+};
+
+export const RESTORATIVE_DENTISTRY_ITEM_STANDARD_FIELD_IDS = {
+  position: '20202020-49df-72a2-c620-0365ab06064b',
+  name: '20202020-de5d-6dfa-6c9d-e3faa2aa510f',
+  createdBy: '20202020-c05c-6974-7c1e-908fc2ca5c4f',
+  activityTargets: '20202020-eea3-fa2b-a880-1f49c5755f51',
+  taskTargets: '20202020-11b7-df6b-e0ed-a194915a093c',
+  noteTargets: '20202020-fa24-a76b-8126-191f90c4158a',
+  favorites: '20202020-6d47-7836-25ac-c0852ab33c2d',
+  attachments: '20202020-ce1d-497a-7c1e-4546ae37fbc1',
+  timelineActivities: '20202020-5749-3660-47d8-0537145599b4',
+  searchVector: '20202020-8eb7-978f-ec81-2e165ff542d5',
+  location: '20202020-62a0-c544-4fbd-63c4f4512777',
+  fullName: '20202020-66da-8aff-c9f8-e3c22708acc9',
+  email: '20202020-11a3-82be-8881-270e0f7f2314',
+  phoneNumber: '20202020-b1c5-e8ff-9922-bd0459570561',
+  dateOfBirth: '20202020-4d06-01ab-3611-e00792950a95',
+  stage: '20202020-3ed3-3347-04d0-67c9ddabda26',
+  gender: '20202020-ccbc-6429-2fc5-21c2592b0e4d',
+  pointOfContact: '20202020-be88-8bf5-7a1d-f36122743369',
+  patientId: '20202020-d94d-79b3-73b0-ea555624a85c',
+};
+
+export const COSMETIC_DENTISTRY_ITEM_STANDARD_FIELD_IDS = {
+  position: '20202020-c137-0aa0-b33f-98e413d057a1',
+  name: '20202020-db70-052c-6647-0e7b2aab2804',
+  createdBy: '20202020-bd40-4e22-9929-e564babb837a',
+  activityTargets: '20202020-d160-a645-3868-78a01caf103c',
+  taskTargets: '20202020-af82-2fdf-03fa-930cc643ee3f',
+  noteTargets: '20202020-bdec-d197-01a2-0720a1b35bf1',
+  favorites: '20202020-144f-27ed-5ca2-d3ae4404b245',
+  attachments: '20202020-4f89-a7ab-beae-58ba45d2870c',
+  timelineActivities: '20202020-b006-35b7-430f-aaa6854ddf82',
+  searchVector: '20202020-554d-c4a7-4ad7-f8e4be358db0',
+  location: '20202020-2fe0-f624-b617-abee6b65349e',
+  fullName: '20202020-3c3b-afcc-eacd-0e1b432ee0d4',
+  email: '20202020-b3ae-73ca-0f6a-e26dc3ac1c76',
+  phoneNumber: '20202020-f94d-9124-4c2c-fe6fdc9ce09a',
+  dateOfBirth: '20202020-3364-fdae-6fcf-0e35a5193791',
+  stage: '20202020-42d2-26d5-93a9-147733741a9b',
+  gender: '20202020-0a53-1e45-0183-758182a9711a',
+  pointOfContact: '20202020-58e6-2722-1763-5a85c083514e',
+  patientId: '20202020-3e7a-0855-03b3-bd5c4bf968f2',
+};
+
+export const ORTHODONTICS_ITEM_STANDARD_FIELD_IDS = {
+  position: '20202020-7834-baa8-2bcb-836fd3dcc6d8',
+  name: '20202020-6391-0e87-6cb1-66a816399997',
+  createdBy: '20202020-c639-c013-4a44-8dbe970fda7e',
+  activityTargets: '20202020-0a79-300f-7483-49683bcb88a1',
+  taskTargets: '20202020-fa0c-47a4-11d4-2e392cc653f9',
+  noteTargets: '20202020-eb46-3e72-87ec-e80fae3cc65e',
+  favorites: '20202020-2148-4312-f582-4f5c6394c936',
+  attachments: '20202020-7623-d71f-867d-98f8e8b270ee',
+  timelineActivities: '20202020-372f-1658-c7c9-ed97304d9357',
+  searchVector: '20202020-b093-0714-f330-998604ff2865',
+  location: '20202020-9a22-d899-82c9-9dd8008a910a',
+  fullName: '20202020-5f97-8fd1-9f36-7cf0eb978609',
+  email: '20202020-6830-93af-236a-23bb3e1aa1a8',
+  phoneNumber: '20202020-c305-90e0-8102-4a16d71fbcae',
+  dateOfBirth: '20202020-bb85-c3e9-6ee0-ec06d081a977',
+  stage: '20202020-186c-50a0-b258-531c1fcfbc68',
+  gender: '20202020-ce96-80d9-935e-3fee13677738',
+  pointOfContact: '20202020-6f81-be97-c2d4-3adcd2a018e3',
+  patientId: '20202020-b5a2-cdb3-c347-1eed0b235ff2',
+};
+
+export const EMERGENCY_CARE_ITEM_STANDARD_FIELD_IDS = {
+  position: '20202020-b4f8-96b4-0b0b-8a1945b296a4',
+  name: '20202020-d150-cd17-110b-7bf86f3e958e',
+  createdBy: '20202020-a303-9a86-bd77-b8fc9f71a790',
+  activityTargets: '20202020-6ce0-16eb-aef3-87a341af99c3',
+  taskTargets: '20202020-8342-ad21-911b-7f61d555cf81',
+  noteTargets: '20202020-0209-ccc4-007a-d9b7ac22b838',
+  favorites: '20202020-e8da-75b7-8c14-8d88ef3b9e23',
+  attachments: '20202020-b456-d9fb-1c59-210ad1e5f6ed',
+  timelineActivities: '20202020-618f-fb2a-f81c-1072cdbeec8b',
+  searchVector: '20202020-d60c-de93-f22f-d49cca9da007',
+  location: '20202020-db5b-7e65-4711-5b45d64abd67',
+  fullName: '20202020-8f52-059d-0f98-dfd16e3c9716',
+  email: '20202020-e509-270a-65d6-a64b5d32c043',
+  phoneNumber: '20202020-e7f8-e0ec-5f57-662cbf36571b',
+  dateOfBirth: '20202020-44d0-4132-82a7-293789fef1aa',
+  stage: '20202020-0d05-4108-5e99-fcc8f6f1f297',
+  gender: '20202020-b85a-9059-d5e2-7facd36c024f',
+  pointOfContact: '20202020-8308-69f1-15ca-5132624d1fae',
+  patientId: '20202020-20a2-2f1a-2228-b2ad767c7bed',
+};
+
+export const SPAM_ITEM_STANDARD_FIELD_IDS = {
+  position: '20202020-a13d-a679-298a-9cce1241e887',
+  name: '20202020-a4f1-203c-169b-c14eac848529',
+  createdBy: '20202020-77a5-f3da-7cb9-ce5d4e81fcfa',
+  activityTargets: '20202020-88e0-d094-74a7-771e3c70bcdf',
+  taskTargets: '20202020-a60a-204b-82b5-259a9310a2ee',
+  noteTargets: '20202020-e5e9-1b9b-1954-99f1ba6ef088',
+  favorites: '20202020-398e-b6c9-ba3c-5c875dbf7a02',
+  attachments: '20202020-4704-78ca-158c-b467e9345bba',
+  timelineActivities: '20202020-9690-0a24-1388-b52dab95ffce',
+  searchVector: '20202020-802d-bd84-3143-b77ca045572f',
+  location: '20202020-2c41-b1f4-111c-e911b546cc36',
+  fullName: '20202020-c7c1-ee00-a426-51a63b315430',
+  email: '20202020-9766-39cf-180f-7001527a3116',
+  phoneNumber: '20202020-d482-8b21-2876-2453c623625b',
+  dateOfBirth: '20202020-4c68-e7eb-b6d3-1f447ca90fcc',
+  stage: '20202020-5f0c-1576-1def-4caf3724678e',
+  gender: '20202020-3273-24f7-3f34-4ba6885d50c8',
+  pointOfContact: '20202020-7fce-65c9-73c9-7b1ab4fff958',
+  patientId: '20202020-2b57-b1f2-0b06-0cf80b177222',
+};
+
 export const STANDARD_OBJECT_FIELD_IDS = {
   activityTarget: ACTIVITY_TARGET_STANDARD_FIELD_IDS,
   activity: ACTIVITY_STANDARD_FIELD_IDS,
@@ -564,4 +795,12 @@ export const STANDARD_OBJECT_FIELD_IDS = {
   workflowRun: WORKFLOW_RUN_STANDARD_FIELD_IDS,
   workflowVersion: WORKFLOW_VERSION_STANDARD_FIELD_IDS,
   workspaceMember: WORKSPACE_MEMBER_STANDARD_FIELD_IDS,
+  location: LOCATION_STANDARD_FIELD_IDS,
+  unsortedItem: UNSORTED_ITEM_STANDARD_FIELD_IDS,
+  preventiveCareItem: PREVENTIVE_CARE_ITEM_STANDARD_FIELD_IDS,
+  restorativeDentistryItem: RESTORATIVE_DENTISTRY_ITEM_STANDARD_FIELD_IDS,
+  cosmeticDentistryItem: COSMETIC_DENTISTRY_ITEM_STANDARD_FIELD_IDS,
+  orthodonticsItem: ORTHODONTICS_ITEM_STANDARD_FIELD_IDS,
+  emergencyCareItem: EMERGENCY_CARE_ITEM_STANDARD_FIELD_IDS,
+  spamItem: SPAM_ITEM_STANDARD_FIELD_IDS,
 };
