@@ -20,6 +20,7 @@ export type CurrentWorkspace = Pick<
   | 'hasValidEntrepriseKey'
   | 'subdomain'
   | 'metadataVersion'
+  | 'pmsUrl'
 >;
 
 export const currentWorkspaceState = createState<CurrentWorkspace | null>({

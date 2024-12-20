@@ -161,6 +161,7 @@ export const queries = {
           interval
         }
         workspaceMembersCount
+        pmsUrl
       }
       workspaces {
         workspace {

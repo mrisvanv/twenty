@@ -51,6 +51,7 @@ export const USER_QUERY_FRAGMENT = gql`
         interval
       }
       workspaceMembersCount
+      pmsUrl
     }
     workspaces {
       workspace {

@@ -89,8 +89,6 @@ export const useMoveOneRecord = ({
 
         const cleanedInput = removeTypename<any>(sanitizedInput);
 
-        console.log('sanitizedInput', cleanedInput);
-
         // Create the record in the target object type
         const movedRecord = await createOneRecord(cleanedInput);
 

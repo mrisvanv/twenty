@@ -201,7 +201,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceRelation({
     standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForOpportunities,
     type: RelationMetadataType.ONE_TO_MANY,
-    label: 'Linked Opportunities',
+    label: 'Opportunities',
     description:
       'List of opportunities for which that person is the point of contact',
     icon: 'IconTargetArrow',
@@ -215,7 +215,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceRelation({
     standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForUnsortedItem,
     type: RelationMetadataType.ONE_TO_MANY,
-    label: 'Linked Unsorted Items',
+    label: 'Unsorted',
     description:
       'List of unsorted items for which that person is the point of contact',
     inverseSideTarget: () => UnsortedItemWorkspaceEntity,
@@ -228,7 +228,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceRelation({
     standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForPreventiveCareItem,
     type: RelationMetadataType.ONE_TO_MANY,
-    label: 'Linked Preventive Care Items',
+    label: 'Preventive Care',
     description:
       'List of preventive care items for which that person is the point of contact',
     inverseSideTarget: () => PreventiveCareItemWorkspaceEntity,
@@ -244,7 +244,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId:
       PERSON_STANDARD_FIELD_IDS.pointOfContactForRestorativeDentistryItem,
     type: RelationMetadataType.ONE_TO_MANY,
-    label: 'Linked Restorative Dentistry Items',
+    label: 'Restorative Dentistry',
     description:
       'List of restorative dentistry items for which that person is the point of contact',
     inverseSideTarget: () => RestorativeDentistryItemWorkspaceEntity,
@@ -259,7 +259,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId:
       PERSON_STANDARD_FIELD_IDS.pointOfContactForCosmeticDentistryItem,
     type: RelationMetadataType.ONE_TO_MANY,
-    label: 'Linked Cosmetic Dentistry Items',
+    label: 'Cosmetic Dentistry',
     description:
       'List of cosmetic dentistry items for which that person is the point of contact',
     inverseSideTarget: () => CosmeticDentistryItemWorkspaceEntity,
@@ -274,7 +274,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceRelation({
     standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForOrthodonticsItem,
     type: RelationMetadataType.ONE_TO_MANY,
-    label: 'Linked Orthodontics Items',
+    label: 'Orthodontics',
     description:
       'List of orthodontics items for which that person is the point of contact',
     inverseSideTarget: () => OrthodonticsItemWorkspaceEntity,
@@ -288,7 +288,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceRelation({
     standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForEmergencyCareItem,
     type: RelationMetadataType.ONE_TO_MANY,
-    label: 'Linked Emergency Care Items',
+    label: 'Emergency Care',
     description:
       'List of emergency care items for which that person is the point of contact',
     inverseSideTarget: () => EmergencyCareItemWorkspaceEntity,
@@ -302,7 +302,7 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceRelation({
     standardId: PERSON_STANDARD_FIELD_IDS.pointOfContactForSpamItem,
     type: RelationMetadataType.ONE_TO_MANY,
-    label: 'Linked Spam Items',
+    label: 'Spam',
     description:
       'List of spam items for which that person is the point of contact',
     inverseSideTarget: () => SpamItemWorkspaceEntity,

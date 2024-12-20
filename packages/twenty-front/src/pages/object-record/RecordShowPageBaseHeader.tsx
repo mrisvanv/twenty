@@ -1,3 +1,4 @@
+import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
 import { PageFavoriteButton } from '@/favorites/components/PageFavoriteButton';
 import { PageFavoriteFoldersDropdown } from '@/favorites/components/PageFavoriteFolderDropdown';
 import { FAVORITE_FOLDER_PICKER_DROPDOWN_ID } from '@/favorites/favorite-folder-picker/constants/FavoriteFolderPickerDropdownId';
@@ -9,6 +10,7 @@ import { PageHeaderOpenCommandMenuButton } from '@/ui/layout/page-header/compone
 import { ShowPageAddButton } from '@/ui/layout/show-page/components/ShowPageAddButton';
 import { ShowPageMoveButton } from '@/ui/layout/show-page/components/ShowPageMoveButton';
 import { useIsFeatureEnabled } from '@/workspace/hooks/useIsFeatureEnabled';
+import { useRecoilState } from 'recoil';
 import { Button, IconUser } from 'twenty-ui';
 
 type RecordShowPageBaseHeaderProps = {
@@ -31,10 +33,18 @@ export const RecordShowPageBaseHeader = ({
   const isFavoriteFolderEnabled = useIsFeatureEnabled(
     'IS_FAVORITE_FOLDER_ENABLED',
   );
+  const [currentWorkspace] = useRecoilState(currentWorkspaceState);
 
   const linesNameSingular = lines.map((line) => line.nameSingular);
+  let schedulerUrl = '';
+  let patientId;
+  if (linesNameSingular.includes(objectNameSingular)) {
+    patientId = record?.patientId;
+    const patientFullName = `${record?.fullName?.firstName} ${record?.fullName?.lastName}`;
 
-  const patientId = record?.patientId;
+    schedulerUrl = `${currentWorkspace?.pmsUrl}/#/scheduler/appointment-calendar?patientId=${patientId}&patientFullName='${patientFullName}'`;
+  }
+
   return (
     <>
       {isFavoriteFolderEnabled ? (
@@ -73,19 +83,18 @@ export const RecordShowPageBaseHeader = ({
               record={record}
               objectNameSingular={objectNameSingular}
             />
-          ) : (
+          ) : schedulerUrl !== '' ? (
             <Button
               key="view-patient"
               title="View Patient"
               variant="secondary"
               Icon={IconUser}
               onClick={() => {
-                window.open(
-                  `https://celebration.qa1.carestackqa.com/#/patient/${patientId}/patient-overview`,
-                  '_blank',
-                );
+                window.open(schedulerUrl, '_blank');
               }}
             />
+          ) : (
+            <></>
           )}
         </>
       )}

@@ -70,15 +70,6 @@ export const NavigationDrawerSectionForObjectMetadataItems = ({
         : -1;
     });
 
-  console.log(
-    'sortedStandardObjectMetadataItems',
-    sortedStandardObjectMetadataItems,
-  );
-  console.log(
-    'sortedCustomObjectMetadataItems',
-    sortedCustomObjectMetadataItems,
-  );
-
   const objectMetadataItemsForNavigationItems = [
     ...sortedStandardObjectMetadataItems,
     ...sortedCustomObjectMetadataItems,

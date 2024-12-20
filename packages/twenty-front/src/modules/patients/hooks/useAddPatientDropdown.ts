@@ -7,7 +7,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import {
   Patient,
-  useAttachPatientMutation,
   useCreatePatientMutation,
   useSearchPatientsMutation,
 } from '~/generated/graphql';
@@ -47,7 +46,6 @@ export const useAddPatientDropdown = ({
 
   const [createPatientMutation] = useCreatePatientMutation();
   const [searchPatientsMutation] = useSearchPatientsMutation();
-  const [attachPatientMutation] = useAttachPatientMutation();
   const { enqueueSnackBar } = useSnackBar();
 
   // Debounce the search query
@@ -83,9 +81,6 @@ export const useAddPatientDropdown = ({
               variant: SnackBarVariant.Error,
             });
           }
-
-          // Your actual search logic here
-          // await new Promise((resolve) => setTimeout(resolve, 1000));
         } catch (error) {
           enqueueSnackBar('Search failed', {
             variant: SnackBarVariant.Error,
@@ -97,7 +92,12 @@ export const useAddPatientDropdown = ({
     };
 
     searchPatients();
-  }, [debouncedSearchQuery, enqueueSnackBar]);
+  }, [
+    debouncedSearchQuery,
+    enqueueSnackBar,
+    searchPatientsMutation,
+    workspaceId,
+  ]);
 
   const addPatient = async () => {
     try {
@@ -148,66 +148,9 @@ export const useAddPatientDropdown = ({
     }
   };
 
-  // const attachPatient = async (patient: Patient) => {
-  //   try {
-  //     // useAttachPatientMutation
-
-  //     if (!record?.id) {
-  //       throw new Error('Record id not found');
-  //     }
-
-  //     if (!patient.patientId) {
-  //       throw new Error('Patient id not found');
-  //     }
-
-  //     const { data } = await attachPatientMutation({
-  //       variables: {
-  //         leadId: record.id,
-  //         patientId: patient.patientId,
-  //         categorySingularApiName: objectNameSingular,
-  //       },
-  //     });
-
-  //     if (data?.attachPatient?.success === true) {
-  //       enqueueSnackBar('Patient attached successfully', {
-  //         variant: SnackBarVariant.Success,
-  //       });
-  //     } else {
-  //       enqueueSnackBar(
-  //         `Failed to attach patient: ${data?.attachPatient?.message || 'Unknown error'}`,
-  //         {
-  //           variant: SnackBarVariant.Error,
-  //         },
-  //       );
-  //     }
-  //   } catch (error) {
-  //     enqueueSnackBar(`Failed to select patient: ${(error as Error).message}`, {
-  //       variant: SnackBarVariant.Error,
-  //     });
-  //   }
-  // };
-  // const resetObjectMetadataItems = useResetRecoilState(
-  //   objectMetadataItemsState,
-  // );
-
-  // const [objectMetadataItems, setObjectMetadataItems] = useRecoilState(
-  //   objectMetadataItemsState,
-  // );
-  const [recordFromStore, setRecordFromStore] =
-    useRecoilState<ObjectRecord | null>(
-      recordStoreFamilyState(record?.id || ''),
-    );
-
-  const setPatientId = (patientId: string) => {
-    console.log('recordFromStore====================', recordFromStore);
-  };
-  // const [recordLoading, setRecordLoading] = useRecoilState(
-  //   recordLoadingFamilyState(record?.id || ''),
-  // );
-  // console.log('recordLoading', recordLoading);
-  // const handleRefresh = () => {
-  //   setRecordLoading(false);
-  // };
+  const [recordFromStore] = useRecoilState<ObjectRecord | null>(
+    recordStoreFamilyState(record?.id || ''),
+  );
 
   const onAddPatient = async () => {
     setIsAddPatientLoading(true);
@@ -216,11 +159,7 @@ export const useAddPatientDropdown = ({
       setIsAddPatientLoading(false);
       return;
     }
-    // const newRecordFromStore: ObjectRecord = {
-    //   ...recordFromStore,
-    //   patientId: patientId,
-    // } as ObjectRecord;
-    // setRecordFromStore(newRecordFromStore);
+
     updateEntity({
       variables: {
         where: {
@@ -245,16 +184,10 @@ export const useAddPatientDropdown = ({
     setPatientSearchQuery(searchQuery);
   }, []);
 
-  const [updateEntity, loading] = useUpdateOneObjectRecordMutation();
+  const [updateEntity] = useUpdateOneObjectRecordMutation();
 
   const onSelectPatient = async (patient: Patient) => {
     setIsAddPatientLoading(true);
-    // await attachPatient(patient);
-    // const newRecordFromStore: ObjectRecord = {
-    //   ...recordFromStore,
-    //   patientId: patient.patientId,
-    // } as ObjectRecord;
-    // setRecordFromStore(newRecordFromStore);
     updateEntity({
       variables: {
         where: {
@@ -267,8 +200,6 @@ export const useAddPatientDropdown = ({
     });
 
     setIsAddPatientLoading(false);
-
-    // handleRefresh();
   };
 
   return {
