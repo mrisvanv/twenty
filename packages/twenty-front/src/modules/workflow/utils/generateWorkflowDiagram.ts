@@ -22,7 +22,6 @@ export const generateWorkflowDiagram = ({
   const nodes: Array<WorkflowDiagramNode> = [];
   const edges: Array<WorkflowDiagramEdge> = [];
 
-  // Helper function to generate nodes and edges recursively
   const processNode = (
     step: WorkflowStep,
     parentNodeId: string,
@@ -30,7 +29,6 @@ export const generateWorkflowDiagram = ({
     yPos: number,
   ) => {
     const nodeId = step.id;
-
     nodes.push({
       id: nodeId,
       data: {
@@ -44,7 +42,6 @@ export const generateWorkflowDiagram = ({
       },
     });
 
-    // Create an edge from the parent node to this node
     edges.push({
       id: v4(),
       source: parentNodeId,
@@ -56,10 +53,35 @@ export const generateWorkflowDiagram = ({
       selectable: false,
     });
 
+    // if (step.type === 'IFELSE') {
+    //   edges.push({
+    //     id: v4(),
+    //     source: nodeId,
+    //     target: `${nodeId}-true`,
+    //     sourceHandle: 'output-0',
+    //     markerEnd: {
+    //       type: MarkerType.ArrowClosed,
+    //     },
+    //     deletable: false,
+    //     selectable: false,
+    //   });
+
+    //   edges.push({
+    //     id: v4(),
+    //     source: nodeId,
+    //     target: `${nodeId}-false`,
+    //     sourceHandle: 'output-1',
+    //     markerEnd: {
+    //       type: MarkerType.ArrowClosed,
+    //     },
+    //     deletable: false,
+    //     selectable: false,
+    //   });
+    // }
+
     return nodeId;
   };
 
-  // Start with the trigger node
   const triggerNodeId = TRIGGER_STEP_ID;
 
   if (isDefined(trigger)) {
@@ -68,16 +90,13 @@ export const generateWorkflowDiagram = ({
     switch (trigger.type) {
       case 'MANUAL': {
         triggerLabel = 'Manual Trigger';
-
         break;
       }
       case 'DATABASE_EVENT': {
         const triggerEvent = splitWorkflowTriggerEventName(
           trigger.settings.eventName,
         );
-
         triggerLabel = `${capitalize(triggerEvent.objectType)} is ${capitalize(triggerEvent.event)}`;
-
         break;
       }
       default: {
@@ -112,10 +131,21 @@ export const generateWorkflowDiagram = ({
     });
   }
 
-  let lastStepId = triggerNodeId;
+  let lastStepIds = [triggerNodeId];
 
   for (const step of steps) {
-    lastStepId = processNode(step, lastStepId, 150, 100);
+    const newStepIds = [];
+
+    for (const lastStepId of lastStepIds) {
+      const newStepId = processNode(step, lastStepId, 150, 100);
+      if (step.type === 'IFELSE') {
+        newStepIds.push(`${newStepId}-true`, `${newStepId}-false`);
+      } else {
+        newStepIds.push(newStepId);
+      }
+    }
+
+    lastStepIds = newStepIds;
   }
 
   return {

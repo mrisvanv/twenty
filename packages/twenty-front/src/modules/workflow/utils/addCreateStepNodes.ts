@@ -15,29 +15,53 @@ export const addCreateStepNodes = ({ nodes, edges }: WorkflowDiagram) => {
   const updatedEdges: Array<WorkflowDiagramEdge> = edges.slice();
 
   for (const node of nodesWithoutTargets) {
-    const newCreateStepNode: WorkflowDiagramNode = {
-      // FIXME: We need a stable id for create step nodes to be able to preserve their selected status.
-      // FIXME: In the future, we'll have conditions and loops. We'll have to set an id to each branch so we can have this stable id.
-      id: 'branch-1__create-step',
-      type: 'create-step',
-      data: {
-        nodeType: 'create-step',
-        parentNodeId: node.id,
-      },
-      position: { x: 0, y: 0 },
-    };
+    if (node.data.nodeType === 'action' && node.data.actionType === 'IFELSE') {
+      ['true', 'false'].forEach((branch) => {
+        const newCreateStepNode: WorkflowDiagramNode = {
+          id: `${node.id}-${branch}__create-step`,
+          type: 'create-step',
+          data: {
+            nodeType: 'create-step',
+            parentNodeId: `${node.id}-${branch}`,
+          },
+          position: { x: node.position.x, y: node.position.y + 150 },
+        };
 
-    updatedNodes.push(newCreateStepNode);
+        updatedNodes.push(newCreateStepNode);
 
-    updatedEdges.push({
-      id: v4(),
-      source: node.id,
-      target: newCreateStepNode.id,
-      markerEnd: {
-        type: MarkerType.ArrowClosed,
-      },
-      deletable: false,
-    });
+        updatedEdges.push({
+          id: v4(),
+          source: `${node.id}-${branch}`,
+          target: newCreateStepNode.id,
+          markerEnd: {
+            type: MarkerType.ArrowClosed,
+          },
+          deletable: false,
+        });
+      });
+    } else {
+      const newCreateStepNode: WorkflowDiagramNode = {
+        id: `${node.id}__create-step`,
+        type: 'create-step',
+        data: {
+          nodeType: 'create-step',
+          parentNodeId: node.id,
+        },
+        position: { x: node.position.x, y: node.position.y + 150 },
+      };
+
+      updatedNodes.push(newCreateStepNode);
+
+      updatedEdges.push({
+        id: v4(),
+        source: node.id,
+        target: newCreateStepNode.id,
+        markerEnd: {
+          type: MarkerType.ArrowClosed,
+        },
+        deletable: false,
+      });
+    }
   }
 
   return {

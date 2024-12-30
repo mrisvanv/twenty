@@ -9,6 +9,7 @@ export const ACTIONS: Array<{
   label: string;
   type: WorkflowStepType;
   icon: IconComponent;
+  category?: string;
 }> = [
   {
     label: 'Serverless Function',
@@ -19,6 +20,12 @@ export const ACTIONS: Array<{
     label: 'Send Email',
     type: 'SEND_EMAIL',
     icon: IconSettingsAutomation,
+  },
+  {
+    label: 'If Else',
+    type: 'IFELSE',
+    icon: IconSettingsAutomation,
+    category: 'control',
   },
   {
     label: 'Create Record',

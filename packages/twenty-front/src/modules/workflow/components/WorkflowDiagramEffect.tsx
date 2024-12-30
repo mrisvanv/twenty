@@ -22,6 +22,7 @@ export const WorkflowDiagramEffect = ({
   const computeAndMergeNewWorkflowDiagram = useRecoilCallback(
     ({ snapshot, set }) => {
       return (currentVersion: WorkflowVersion) => {
+        console.log('currentVersion', currentVersion);
         const previousWorkflowDiagram = getSnapshotValue(
           snapshot,
           workflowDiagramState,
@@ -30,6 +31,7 @@ export const WorkflowDiagramEffect = ({
         const nextWorkflowDiagram = addCreateStepNodes(
           getWorkflowVersionDiagram(currentVersion),
         );
+        console.log('nextWorkflowDiagram', nextWorkflowDiagram);
 
         let mergedWorkflowDiagram = nextWorkflowDiagram;
         if (isDefined(previousWorkflowDiagram)) {
@@ -38,6 +40,7 @@ export const WorkflowDiagramEffect = ({
             nextWorkflowDiagram,
           );
         }
+        console.log('mergedWorkflowDiagram', mergedWorkflowDiagram);
 
         set(workflowDiagramState, mergedWorkflowDiagram);
       };

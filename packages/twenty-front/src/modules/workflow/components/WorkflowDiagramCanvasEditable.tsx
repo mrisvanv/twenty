@@ -14,6 +14,7 @@ export const WorkflowDiagramCanvasEditable = ({
   diagram: WorkflowDiagram;
   workflowWithCurrentVersion: WorkflowWithCurrentVersion;
 }) => {
+  console.log('diagram', diagram);
   return (
     <ReactFlowProvider>
       <WorkflowDiagramCanvasBase

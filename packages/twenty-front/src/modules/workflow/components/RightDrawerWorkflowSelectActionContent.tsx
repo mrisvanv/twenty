@@ -14,6 +14,15 @@ const StyledActionListContainer = styled.div`
   padding-inline: ${({ theme }) => theme.spacing(2)};
 `;
 
+const StyledLabel = styled.span`
+  color: ${({ theme }) => theme.font.color.light};
+  display: block;
+  font-size: ${({ theme }) => theme.font.size.xs};
+  font-weight: ${({ theme }) => theme.font.weight.semiBold};
+  margin-bottom: ${({ theme }) => theme.spacing(1)};
+  margin-top: ${({ theme }) => theme.spacing(5)};
+`;
+
 export const RightDrawerWorkflowSelectActionContent = ({
   workflow,
 }: {
@@ -24,17 +33,36 @@ export const RightDrawerWorkflowSelectActionContent = ({
   });
 
   return (
-    <StyledActionListContainer>
-      {ACTIONS.map((action) => (
-        <MenuItem
-          key={action.type}
-          LeftIcon={action.icon}
-          text={action.label}
-          onClick={() => {
-            return createStep(action.type);
-          }}
-        />
-      ))}
-    </StyledActionListContainer>
+    <>
+      <StyledActionListContainer>
+        <StyledLabel>Actions</StyledLabel>
+        {ACTIONS.filter(
+          (action) =>
+            action.category === undefined || action.category === 'action',
+        ).map((action) => (
+          <MenuItem
+            key={action.type}
+            LeftIcon={action.icon}
+            text={action.label}
+            onClick={() => {
+              return createStep(action.type);
+            }}
+          />
+        ))}
+        <StyledLabel>Controls</StyledLabel>
+        {ACTIONS.filter((action) => action.category === 'control').map(
+          (control) => (
+            <MenuItem
+              key={control.type}
+              LeftIcon={control.icon}
+              text={control.label}
+              onClick={() => {
+                return createStep(control.type);
+              }}
+            />
+          ),
+        )}
+      </StyledActionListContainer>
+    </>
   );
 };

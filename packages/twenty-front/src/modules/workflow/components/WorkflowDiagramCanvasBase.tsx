@@ -1,8 +1,10 @@
+import { useListenRightDrawerClose } from '@/ui/layout/right-drawer/hooks/useListenRightDrawerClose';
 import { isRightDrawerMinimizedState } from '@/ui/layout/right-drawer/states/isRightDrawerMinimizedState';
 import { isRightDrawerOpenState } from '@/ui/layout/right-drawer/states/isRightDrawerOpenState';
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { WorkflowVersionStatusTag } from '@/workflow/components/WorkflowVersionStatusTag';
 import { workflowDiagramState } from '@/workflow/states/workflowDiagramState';
+import { workflowReactFlowRefState } from '@/workflow/states/workflowReactFlowRefState';
 import { WorkflowVersionStatus } from '@/workflow/types/Workflow';
 import {
   WorkflowDiagram,
@@ -28,8 +30,6 @@ import '@xyflow/react/dist/style.css';
 import React, { useEffect, useMemo, useRef } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { GRAY_SCALE, isDefined, THEME_COMMON } from 'twenty-ui';
-import { useListenRightDrawerClose } from '@/ui/layout/right-drawer/hooks/useListenRightDrawerClose';
-import { workflowReactFlowRefState } from '@/workflow/states/workflowReactFlowRefState';
 
 const StyledResetReactflowStyles = styled.div`
   height: 100%;
@@ -118,6 +118,7 @@ export const WorkflowDiagramCanvasBase = ({
   const handleNodesChange = (
     nodeChanges: Array<NodeChange<WorkflowDiagramNode>>,
   ) => {
+    console.log('nodeChanges', nodeChanges);
     setWorkflowDiagram((diagram) => {
       if (isDefined(diagram) === false) {
         throw new Error(
@@ -135,6 +136,7 @@ export const WorkflowDiagramCanvasBase = ({
   const handleEdgesChange = (
     edgeChanges: Array<EdgeChange<WorkflowDiagramEdge>>,
   ) => {
+    console.log('edgeChanges', edgeChanges);
     setWorkflowDiagram((diagram) => {
       if (isDefined(diagram) === false) {
         throw new Error(

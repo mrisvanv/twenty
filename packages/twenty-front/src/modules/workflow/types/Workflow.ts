@@ -86,12 +86,26 @@ export type WorkflowDeleteRecordAction = BaseWorkflowAction & {
   settings: WorkflowDeleteRecordActionSettings;
 };
 
+export type WorkflowIfElseControl = BaseWorkflowAction & {
+  type: 'IFELSE';
+  settings: {
+    condition: string;
+    trueBranch: WorkflowAction[];
+    falseBranch: WorkflowAction[];
+  };
+};
+
+export type WorkflowControl = WorkflowIfElseControl;
+
+export type WorkflowControlType = WorkflowControl['type'];
+
 export type WorkflowAction =
   | WorkflowCodeAction
   | WorkflowSendEmailAction
   | WorkflowCreateRecordAction
   | WorkflowUpdateRecordAction
-  | WorkflowDeleteRecordAction;
+  | WorkflowDeleteRecordAction
+  | WorkflowControl;
 
 export type WorkflowActionType = WorkflowAction['type'];
 
@@ -141,7 +155,6 @@ export type WorkflowVersionStatus =
   | 'ACTIVE'
   | 'DEACTIVATED'
   | 'ARCHIVED';
-
 export type WorkflowVersion = {
   id: string;
   name: string;

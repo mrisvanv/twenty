@@ -89,6 +89,17 @@ export const WorkflowDiagramStepNodeBase = ({
               </StyledStepNodeLabelIconContainer>
             );
           }
+          case 'IFELSE': {
+            return (
+              <StyledStepNodeLabelIconContainer>
+                <IconCode
+                  size={theme.icon.size.lg}
+                  color={theme.font.color.tertiary}
+                  stroke={theme.icon.stroke.sm}
+                />
+              </StyledStepNodeLabelIconContainer>
+            );
+          }
         }
       }
     }
@@ -96,12 +107,21 @@ export const WorkflowDiagramStepNodeBase = ({
     return assertUnreachable(data);
   };
 
+  let outputPortCount = 1;
+  let outputPortLabels: string[] | undefined = undefined;
+  if (data.nodeType === 'action' && data.actionType === 'IFELSE') {
+    outputPortCount = 2;
+    outputPortLabels = ['True', 'False'];
+  }
+
   return (
     <WorkflowDiagramBaseStepNode
       name={data.name}
       nodeType={data.nodeType}
       Icon={renderStepIcon()}
       RightFloatingElement={RightFloatingElement}
+      outputPortCount={outputPortCount}
+      outputPortLabels={outputPortLabels}
     />
   );
 };

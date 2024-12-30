@@ -115,6 +115,22 @@ export class WorkflowVersionStepWorkspaceService {
           },
         };
       }
+      case WorkflowActionType.IFELSE: {
+        return {
+          id: newStepId,
+          name: 'If Else',
+          type: WorkflowActionType.IFELSE,
+          valid: false,
+          settings: {
+            ...BASE_STEP_DEFINITION,
+            input: {
+              conditions: [],
+              trueActions: [],
+              falseActions: [],
+            },
+          },
+        };
+      }
       case WorkflowActionType.CREATE_RECORD: {
         const activeObjectMetadataItem =
           await this.objectMetadataRepository.findOne({

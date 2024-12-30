@@ -2,14 +2,16 @@ import { WorkflowDiagramStepNodeData } from '@/workflow/types/WorkflowDiagram';
 import styled from '@emotion/styled';
 import { Handle, Position } from '@xyflow/react';
 import React from 'react';
-import { isDefined, OverflowingTextWithTooltip } from 'twenty-ui';
+import { OverflowingTextWithTooltip } from 'twenty-ui';
 import { capitalize } from '~/utils/string/capitalize';
 
-type Variant = 'placeholder';
-
-const StyledStepNodeContainer = styled.div`
+// Two Output Base Node
+const StyledBaseContainer = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const StyledStepNodeContainer = styled.div`
   padding-bottom: 12px;
   padding-top: 6px;
 `;
@@ -33,7 +35,7 @@ const StyledStepNodeType = styled.div`
   }
 `;
 
-const StyledStepNodeInnerContainer = styled.div<{ variant?: Variant }>`
+const StyledStepNodeInnerContainer = styled.div<{ variant?: 'placeholder' }>`
   background-color: ${({ theme }) => theme.background.secondary};
   border: 1px solid ${({ theme }) => theme.border.color.medium};
   border-style: ${({ variant }) =>
@@ -54,7 +56,7 @@ const StyledStepNodeInnerContainer = styled.div<{ variant?: Variant }>`
   }
 `;
 
-const StyledStepNodeLabel = styled.div<{ variant?: Variant }>`
+const StyledStepNodeLabel = styled.div<{ variant?: 'placeholder' }>`
   align-items: center;
   display: flex;
   font-size: ${({ theme }) => theme.font.size.lg};
@@ -67,111 +69,83 @@ const StyledStepNodeLabel = styled.div<{ variant?: Variant }>`
   max-width: 200px;
 `;
 
-const StyledSourceHandle = styled(Handle)`
-  background-color: ${({ theme }) => theme.color.gray50};
-`;
-
-const StyledSourceHandlesContainer = styled.div`
+const StyledBranchContainer = styled.div`
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-  /* gap: 100px; */
-  padding: 0 ${({ theme }) => theme.spacing(2)};
+  justify-content: space-between;
   margin-top: ${({ theme }) => theme.spacing(2)};
+  gap: ${({ theme }) => theme.spacing(4)};
 `;
 
-const StyledPortContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-`;
-
-const StyledPortLabel = styled.div`
+const StyledBranchLabel = styled.div`
   color: ${({ theme }) => theme.font.color.light};
   font-size: ${({ theme }) => theme.font.size.sm};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
   margin-bottom: ${({ theme }) => theme.spacing(1)};
   text-align: center;
 `;
 
-export const StyledTargetHandle = styled(Handle)`
+const StyledTargetHandle = styled(Handle)`
   visibility: hidden;
 `;
 
-const StyledRightFloatingElementContainer = styled.div`
-  display: flex;
-  align-items: center;
-  position: absolute;
-  right: ${({ theme }) => theme.spacing(-3)};
-  bottom: 0;
-  top: 0;
-  transform: translateX(100%);
+const StyledSourceHandle = styled(Handle)`
+  background-color: ${({ theme }) => theme.color.gray50};
+  &.left-branch {
+    left: 25%;
+  }
+  &.right-branch {
+    left: 75%;
+  }
 `;
 
-export const WorkflowDiagramBaseStepNode = ({
+type WorkflowDiagramTwoOutputBaseNodeProps = {
+  nodeType: WorkflowDiagramStepNodeData['nodeType'];
+  name: string;
+  variant?: 'placeholder';
+  Icon?: React.ReactNode;
+  leftBranchLabel: string;
+  rightBranchLabel: string;
+};
+
+export const WorkflowDiagramTwoOutputBaseNode = ({
   nodeType,
   name,
   variant,
   Icon,
-  RightFloatingElement,
-  outputPortCount = 1,
-  outputPortLabels,
-}: {
-  nodeType: WorkflowDiagramStepNodeData['nodeType'];
-  name: string;
-  variant?: Variant;
-  Icon?: React.ReactNode;
-  RightFloatingElement?: React.ReactNode;
-  outputPortCount?: number;
-  outputPortLabels?: string[];
-}) => {
-  const getPortLabel = (index: number) => {
-    return outputPortLabels?.[index] ?? '';
-  };
-
-  const renderSourceHandles = () => {
-    const handles = [];
-    for (let i = 0; i < outputPortCount; i++) {
-      handles.push(
-        <StyledPortContainer key={i}>
-          {outputPortCount > 1 && (
-            <StyledPortLabel>{getPortLabel(i)}</StyledPortLabel>
-          )}
-          <StyledSourceHandle
-            type="source"
-            position={Position.Bottom}
-            id={`output-${i}`}
-          />
-        </StyledPortContainer>,
-      );
-    }
-    return handles;
-  };
-
-  return (
+  leftBranchLabel,
+  rightBranchLabel,
+}: WorkflowDiagramTwoOutputBaseNodeProps) => (
+  <StyledBaseContainer>
     <StyledStepNodeContainer>
-      {nodeType !== 'trigger' && (
-        <StyledTargetHandle type="target" position={Position.Top} />
-      )}
-
+      <StyledTargetHandle type="target" position={Position.Top} />
       <StyledStepNodeType>{capitalize(nodeType)}</StyledStepNodeType>
-
       <StyledStepNodeInnerContainer variant={variant}>
         <StyledStepNodeLabel variant={variant}>
           {Icon}
           <OverflowingTextWithTooltip text={name} />
         </StyledStepNodeLabel>
-
-        {isDefined(RightFloatingElement) && (
-          <StyledRightFloatingElementContainer>
-            {RightFloatingElement}
-          </StyledRightFloatingElementContainer>
-        )}
       </StyledStepNodeInnerContainer>
-
-      <StyledSourceHandlesContainer>
-        {renderSourceHandles()}
-      </StyledSourceHandlesContainer>
     </StyledStepNodeContainer>
-  );
-};
+
+    <StyledBranchContainer>
+      <div>
+        <StyledBranchLabel>{leftBranchLabel}</StyledBranchLabel>
+        <StyledSourceHandle
+          type="source"
+          position={Position.Bottom}
+          className="left-branch"
+          id="left"
+        />
+      </div>
+      <div>
+        <StyledBranchLabel>{rightBranchLabel}</StyledBranchLabel>
+        <StyledSourceHandle
+          type="source"
+          position={Position.Bottom}
+          className="right-branch"
+          id="right"
+        />
+      </div>
+    </StyledBranchContainer>
+  </StyledBaseContainer>
+);
