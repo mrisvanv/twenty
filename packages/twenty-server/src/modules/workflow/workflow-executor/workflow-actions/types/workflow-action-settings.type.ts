@@ -1,5 +1,6 @@
 import { OutputSchema } from 'src/modules/workflow/workflow-builder/types/output-schema.type';
 import { WorkflowCodeActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/code/types/workflow-code-action-settings.type';
+import { WorkflowIfConditionActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/control-actions/types/workflow-if-condition-action-settings.type';
 import { WorkflowSendEmailActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/mail-sender/types/workflow-send-email-action-settings.type';
 import {
   WorkflowCreateRecordActionSettings,
@@ -23,6 +24,7 @@ export type BaseWorkflowActionSettings = {
 
 export type WorkflowActionSettings =
   | WorkflowSendEmailActionSettings
+  | WorkflowIfConditionActionSettings
   | WorkflowCodeActionSettings
   | WorkflowCreateRecordActionSettings
   | WorkflowUpdateRecordActionSettings

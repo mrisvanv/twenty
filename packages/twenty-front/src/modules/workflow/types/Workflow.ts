@@ -30,6 +30,12 @@ export type WorkflowSendEmailActionSettings = BaseWorkflowActionSettings & {
   };
 };
 
+export type WorkflowIfConditionActionSettings = BaseWorkflowActionSettings & {
+  input: {
+    expression: string;
+  };
+};
+
 type ObjectRecord = Record<string, any>;
 
 export type WorkflowCreateRecordActionSettings = BaseWorkflowActionSettings & {
@@ -69,6 +75,10 @@ export type WorkflowSendEmailAction = BaseWorkflowAction & {
   type: 'SEND_EMAIL';
   settings: WorkflowSendEmailActionSettings;
 };
+export type WorkflowIfConditionAction = BaseWorkflowAction & {
+  type: 'IF_CONDITION';
+  settings: WorkflowIfConditionActionSettings;
+};
 
 export type WorkflowCreateRecordAction = BaseWorkflowAction & {
   type: 'CREATE_RECORD';
@@ -90,7 +100,8 @@ export type WorkflowAction =
   | WorkflowSendEmailAction
   | WorkflowCreateRecordAction
   | WorkflowUpdateRecordAction
-  | WorkflowDeleteRecordAction;
+  | WorkflowDeleteRecordAction
+  | WorkflowIfConditionAction;
 
 export type WorkflowActionType = WorkflowAction['type'];
 

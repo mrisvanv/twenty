@@ -72,7 +72,7 @@ export class WorkflowExecutorWorkspaceService {
       },
     };
 
-    if (result.result) {
+    if (result.exit !== true && result.result) {
       return await this.execute({
         currentStepIndex: currentStepIndex + 1,
         steps,

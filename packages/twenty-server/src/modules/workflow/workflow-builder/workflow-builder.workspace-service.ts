@@ -72,6 +72,9 @@ export class WorkflowBuilderWorkspaceService {
       case WorkflowActionType.SEND_EMAIL: {
         return this.computeSendEmailActionOutputSchema();
       }
+      case WorkflowActionType.IF_CONDITION: {
+        return this.computeIfConditionActionOutputSchema();
+      }
       case WorkflowActionType.CODE: {
         const { serverlessFunctionId, serverlessFunctionVersion } =
           step.settings.input;
@@ -84,6 +87,7 @@ export class WorkflowBuilderWorkspaceService {
           codeIntrospectionService: this.codeIntrospectionService,
         });
       }
+
       case WorkflowActionType.CREATE_RECORD:
       case WorkflowActionType.UPDATE_RECORD:
       case WorkflowActionType.DELETE_RECORD:
@@ -192,6 +196,10 @@ export class WorkflowBuilderWorkspaceService {
   }
 
   private computeSendEmailActionOutputSchema(): OutputSchema {
+    return { success: { isLeaf: true, type: 'boolean', value: true } };
+  }
+
+  private computeIfConditionActionOutputSchema(): OutputSchema {
     return { success: { isLeaf: true, type: 'boolean', value: true } };
   }
 

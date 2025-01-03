@@ -76,6 +76,16 @@ export const WorkflowDiagramStepNodeBase = ({
               </StyledStepNodeLabelIconContainer>
             );
           }
+          case 'IF_CONDITION': {
+            return (
+              <StyledStepNodeLabelIconContainer>
+                <IconCode
+                  size={theme.icon.size.lg}
+                  color={theme.font.color.tertiary}
+                />
+              </StyledStepNodeLabelIconContainer>
+            );
+          }
           case 'CREATE_RECORD':
           case 'UPDATE_RECORD':
           case 'DELETE_RECORD': {

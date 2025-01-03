@@ -7,6 +7,7 @@ import {
   WorkflowStepExecutorExceptionCode,
 } from 'src/modules/workflow/workflow-executor/exceptions/workflow-step-executor.exception';
 import { CodeWorkflowAction } from 'src/modules/workflow/workflow-executor/workflow-actions/code/code.workflow-action';
+import { IfConditionWorkflowAction } from 'src/modules/workflow/workflow-executor/workflow-actions/control-actions/if-condition.workflow-action';
 import { SendEmailWorkflowAction } from 'src/modules/workflow/workflow-executor/workflow-actions/mail-sender/send-email.workflow-action';
 import { CreateRecordWorkflowAction } from 'src/modules/workflow/workflow-executor/workflow-actions/record-crud/create-record.workflow-action';
 import { DeleteRecordWorkflowAction } from 'src/modules/workflow/workflow-executor/workflow-actions/record-crud/delete-record.workflow-action';
@@ -19,6 +20,7 @@ export class WorkflowActionFactory {
   constructor(
     private readonly codeWorkflowAction: CodeWorkflowAction,
     private readonly sendEmailWorkflowAction: SendEmailWorkflowAction,
+    private readonly ifConditionWorkflowAction: IfConditionWorkflowAction,
     private readonly createRecordWorkflowAction: CreateRecordWorkflowAction,
     private readonly updateRecordWorkflowAction: UpdateRecordWorkflowAction,
     private readonly deleteRecordWorkflowAction: DeleteRecordWorkflowAction,
@@ -31,6 +33,8 @@ export class WorkflowActionFactory {
         return this.codeWorkflowAction;
       case WorkflowActionType.SEND_EMAIL:
         return this.sendEmailWorkflowAction;
+      case WorkflowActionType.IF_CONDITION:
+        return this.ifConditionWorkflowAction;
       case WorkflowActionType.CREATE_RECORD:
         return this.createRecordWorkflowAction;
       case WorkflowActionType.UPDATE_RECORD:

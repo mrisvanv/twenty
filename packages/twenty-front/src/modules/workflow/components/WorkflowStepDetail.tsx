@@ -7,8 +7,10 @@ import {
 } from '@/workflow/types/Workflow';
 import { assertUnreachable } from '@/workflow/utils/assertUnreachable';
 import { getStepDefinitionOrThrow } from '@/workflow/utils/getStepDefinitionOrThrow';
+import WorkflowEditActionFormIfCondition from '@/workflow/workflow-actions/components/if-condition/WorkflowEditActionFormIfCondition';
 import { WorkflowEditActionFormCreateRecord } from '@/workflow/workflow-actions/components/WorkflowEditActionFormCreateRecord';
 import { WorkflowEditActionFormDeleteRecord } from '@/workflow/workflow-actions/components/WorkflowEditActionFormDeleteRecord';
+// import { WorkflowEditActionFormIfCondition } from '@/workflow/workflow-actions/components/WorkflowEditActionFormIfCondition';
 import { WorkflowEditActionFormSendEmail } from '@/workflow/workflow-actions/components/WorkflowEditActionFormSendEmail';
 import { WorkflowEditActionFormUpdateRecord } from '@/workflow/workflow-actions/components/WorkflowEditActionFormUpdateRecord';
 import { lazy, Suspense } from 'react';
@@ -99,6 +101,14 @@ export const WorkflowStepDetail = ({
         case 'SEND_EMAIL': {
           return (
             <WorkflowEditActionFormSendEmail
+              action={stepDefinition.definition}
+              actionOptions={props}
+            />
+          );
+        }
+        case 'IF_CONDITION': {
+          return (
+            <WorkflowEditActionFormIfCondition
               action={stepDefinition.definition}
               actionOptions={props}
             />

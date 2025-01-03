@@ -21,6 +21,11 @@ export const ACTIONS: Array<{
     icon: IconSettingsAutomation,
   },
   {
+    label: 'If Condition',
+    type: 'IF_CONDITION',
+    icon: IconSettingsAutomation,
+  },
+  {
     label: 'Create Record',
     type: 'CREATE_RECORD',
     icon: IconAddressBook,

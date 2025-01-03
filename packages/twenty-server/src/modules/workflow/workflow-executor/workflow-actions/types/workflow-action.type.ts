@@ -1,4 +1,5 @@
 import { WorkflowCodeActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/code/types/workflow-code-action-settings.type';
+import { WorkflowIfConditionActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/control-actions/types/workflow-if-condition-action-settings.type';
 import { WorkflowSendEmailActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/mail-sender/types/workflow-send-email-action-settings.type';
 import {
   WorkflowCreateRecordActionSettings,
@@ -11,6 +12,7 @@ import { WorkflowActionSettings } from 'src/modules/workflow/workflow-executor/w
 export enum WorkflowActionType {
   CODE = 'CODE',
   SEND_EMAIL = 'SEND_EMAIL',
+  IF_CONDITION = 'IF_CONDITION',
   CREATE_RECORD = 'CREATE_RECORD',
   UPDATE_RECORD = 'UPDATE_RECORD',
   DELETE_RECORD = 'DELETE_RECORD',
@@ -33,6 +35,11 @@ export type WorkflowCodeAction = BaseWorkflowAction & {
 export type WorkflowSendEmailAction = BaseWorkflowAction & {
   type: WorkflowActionType.SEND_EMAIL;
   settings: WorkflowSendEmailActionSettings;
+};
+
+export type WorkflowIfConditionAction = BaseWorkflowAction & {
+  type: WorkflowActionType.IF_CONDITION;
+  settings: WorkflowIfConditionActionSettings;
 };
 
 export type WorkflowCreateRecordAction = BaseWorkflowAction & {
@@ -58,6 +65,7 @@ export type WorkflowFindRecordsAction = BaseWorkflowAction & {
 export type WorkflowAction =
   | WorkflowCodeAction
   | WorkflowSendEmailAction
+  | WorkflowIfConditionAction
   | WorkflowCreateRecordAction
   | WorkflowUpdateRecordAction
   | WorkflowDeleteRecordAction

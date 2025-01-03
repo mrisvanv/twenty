@@ -7,4 +7,5 @@ type WorkflowActionError = {
 export type WorkflowActionResult = {
   result?: object;
   error?: WorkflowActionError;
+  exit?: boolean;
 };
